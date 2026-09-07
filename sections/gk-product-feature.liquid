@@ -1,46 +1,45 @@
 {% liquid
   assign chosen_product = section.settings.product
+  if chosen_product == blank
+    assign chosen_product = all_products['tagwerk']
+  endif
   assign title = section.settings.heading
   assign subtitle = section.settings.subtitle
   if chosen_product != blank and title == blank
     assign title = chosen_product.title
+  endif
+  assign feature_url = section.settings.link | default: routes.all_products_collection_url
+  if chosen_product != blank
+    assign feature_url = chosen_product.url
   endif
 %}
 
 <section id="produkte" class="gk-section gk-product-feature-section">
   <div class="gk-container">
     <div class="gk-product-feature">
-      <div class="gk-product-feature__visual">
+      <a class="gk-product-feature__visual" href="{{ feature_url }}" aria-label="{{ title | default: 'TAGWERK' | escape }} ansehen">
         <img src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="320" height="448" loading="lazy" alt="TAGWERK Produktbehälter">
-      </div>
+      </a>
 
       <div class="gk-product-feature__content">
-        {% if section.settings.eyebrow != blank %}
-          <p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>
-        {% endif %}
+        {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
         <h2 class="gk-product-feature__title">{{ title | default: 'TAGWERK' | escape }}</h2>
         {% if subtitle != blank %}<p class="gk-product-feature__sub">{{ subtitle | escape }}</p>{% endif %}
         {% if section.settings.text != blank %}<div class="gk-copy">{{ section.settings.text }}</div>{% endif %}
 
         <div class="gk-product-feature__badges" aria-label="Produktmerkmale">
-          {% for block in section.blocks %}
-            <span {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</span>
-          {% endfor %}
+          {% for block in section.blocks %}<span {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</span>{% endfor %}
         </div>
 
         <div class="gk-product-feature__bottom">
           <div class="gk-product-feature__price">
             {% if chosen_product != blank %}
-              {{ chosen_product.price | money }}
+              {% if chosen_product.price_varies %}ab {% endif %}{{ chosen_product.price | money }}
             {% else %}
               In Entwicklung
             {% endif %}
           </div>
-          {% if chosen_product != blank %}
-            <a class="gk-btn gk-btn--primary" href="{{ chosen_product.url }}">Produkt ansehen</a>
-          {% else %}
-            <a class="gk-btn gk-btn--primary" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | default: 'Mehr erfahren' }}</a>
-          {% endif %}
+          <a class="gk-btn gk-btn--primary" href="{{ feature_url }}">{% if chosen_product != blank %}Produkt ansehen{% else %}{{ section.settings.button_label | default: 'Mehr erfahren' }}{% endif %}</a>
         </div>
       </div>
     </div>
@@ -54,32 +53,24 @@
   "class": "section-gk-product-feature",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Produkt-Hero" },
-    { "type": "product", "id": "product", "label": "Shopify-Produkt (optional)" },
+    { "type": "product", "id": "product", "label": "Shopify-Produkt (optional, sonst wird Handle tagwerk gesucht)" },
     { "type": "text", "id": "heading", "label": "Überschrift", "default": "TAGWERK" },
     { "type": "text", "id": "subtitle", "label": "Unterzeile", "default": "Yuzu-Zitrone" },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Als tägliche Routine für lange Arbeitstage gedacht. Die finale Rezeptur und Kennzeichnung werden vor dem Verkauf verbindlich festgelegt.</p>" },
     { "type": "text", "id": "button_label", "label": "Button", "default": "Mehr erfahren" },
-    { "type": "url", "id": "link", "label": "Link" }
+    { "type": "url", "id": "link", "label": "Fallback-Link" }
   ],
   "blocks": [
-    {
-      "type": "badge",
-      "name": "Merkmal",
-      "settings": [
-        { "type": "text", "id": "label", "label": "Text", "default": "Klare Routine" }
-      ]
-    }
+    { "type": "badge", "name": "Merkmal", "settings": [{ "type": "text", "id": "label", "label": "Text", "default": "Klare Routine" }] }
   ],
   "max_blocks": 6,
-  "presets": [
-    {
-      "name": "TAGWERK Produkt-Hero",
-      "blocks": [
-        { "type": "badge", "settings": { "label": "1-Liter-Routine" } },
-        { "type": "badge", "settings": { "label": "Für lange Arbeitstage" } },
-        { "type": "badge", "settings": { "label": "In Entwicklung" } }
-      ]
-    }
-  ]
+  "presets": [{
+    "name": "TAGWERK Produkt-Hero",
+    "blocks": [
+      { "type": "badge", "settings": { "label": "1-Liter-Routine" } },
+      { "type": "badge", "settings": { "label": "Für lange Arbeitstage" } },
+      { "type": "badge", "settings": { "label": "In Entwicklung" } }
+    ]
+  }]
 }
 {% endschema %}
