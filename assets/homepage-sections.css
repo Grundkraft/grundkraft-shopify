@@ -1,0 +1,31 @@
+/* GRUNDKRAFT homepage expansion: ingredients + FAQ */
+.gk-split-head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(340px,1.1fr);gap:54px;align-items:end;margin-bottom:28px}
+.gk-split-head .gk-copy{justify-self:end;max-width:640px}
+
+.gk-ingredients-section{position:relative;background:linear-gradient(180deg,#131415 0%,#18191a 50%,#121314 100%);overflow:hidden}
+.gk-ingredients-section:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 15%,rgba(255,255,255,.045),transparent 26%),radial-gradient(circle at 88% 82%,rgba(243,92,19,.08),transparent 28%)}
+.gk-ingredient-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.gk-ingredient-card{position:relative;min-height:250px;padding:26px 22px 22px;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:8px;background:linear-gradient(160deg,rgba(61,62,62,.9),rgba(38,39,39,.95) 48%,rgba(27,28,28,.98));box-shadow:inset 0 1px rgba(255,255,255,.055),0 12px 26px rgba(0,0,0,.18)}
+.gk-ingredient-card:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:9px 9px;mask-image:linear-gradient(180deg,#000,transparent 72%)}
+.gk-ingredient-card__index{position:relative;z-index:1;color:rgba(255,255,255,.18);font-family:var(--gk-font-heading);font-size:2.2rem;font-weight:800;line-height:1}
+.gk-ingredient-card__line{position:relative;z-index:1;width:42px;height:3px;margin:18px 0 18px;background:#f35c13}
+.gk-ingredient-card h3{position:relative;z-index:1;margin:0;font-family:var(--gk-font-heading);font-size:1.25rem;line-height:1;text-transform:uppercase}
+.gk-ingredient-card p{position:relative;z-index:1;margin:12px 0 18px;color:#c0bbb3;font-size:.88rem;line-height:1.5}
+.gk-ingredient-card span{position:relative;z-index:1;display:inline-block;margin-top:auto;padding:5px 8px;border:1px solid rgba(255,255,255,.11);border-radius:999px;background:rgba(0,0,0,.2);color:#d5d0c8;font-size:.7rem}
+.gk-transparency-strip{position:relative;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;margin-top:16px;padding:16px 18px;border-left:4px solid #f35c13;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}
+.gk-transparency-strip strong{font-family:var(--gk-font-heading);text-transform:uppercase}.gk-transparency-strip span{color:#aaa59e;font-size:.86rem}
+
+.gk-faq-section{background:linear-gradient(180deg,#111213,#0e0f10)}
+.gk-faq-head{margin-bottom:20px}
+.gk-faq-list{border-top:1px solid rgba(255,255,255,.11)}
+.gk-faq-item{border-bottom:1px solid rgba(255,255,255,.11);background:linear-gradient(90deg,rgba(255,255,255,.018),transparent 55%)}
+.gk-faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 4px;cursor:pointer;list-style:none;font-family:var(--gk-font-heading);font-size:1.05rem;font-weight:800;text-transform:uppercase}
+.gk-faq-item summary::-webkit-details-marker{display:none}
+.gk-faq-item__plus{width:28px;height:28px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.15);color:#f35c13;font-family:Arial,sans-serif;font-size:1.1rem;transition:transform .18s ease,background .18s ease}
+.gk-faq-item[open] .gk-faq-item__plus{transform:rotate(45deg);background:rgba(243,92,19,.08)}
+.gk-faq-item__answer{max-width:850px;padding:0 48px 20px 4px;color:#aaa59e;font-size:.92rem}
+.gk-faq-item__answer p{margin:0}
+
+@media(max-width:1050px){.gk-ingredient-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.gk-split-head{grid-template-columns:1fr;gap:14px}.gk-split-head .gk-copy{justify-self:start}.gk-transparency-strip{grid-template-columns:1fr;gap:5px}}
+@media(max-width:600px){.gk-ingredient-grid{grid-template-columns:1fr}.gk-ingredient-card{min-height:auto}.gk-faq-item summary{font-size:.95rem}.gk-faq-item__answer{padding-right:4px}}
