@@ -1,0 +1,19 @@
+{
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "general": {
+    "meta": {
+      "tags": "Tagged {{ tags }}",
+      "page": "Page {{ page }}"
+    }
+  },
+  "header": {
+    "menu": "Menu",
+    "account": "Account",
+    "cart": "Cart"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}
