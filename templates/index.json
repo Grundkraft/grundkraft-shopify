@@ -26,6 +26,20 @@
       },
       "block_order": ["pillar_1", "pillar_2", "pillar_3"]
     },
+    "workday": {
+      "type": "gk-workday",
+      "settings": {
+        "heading": "Acht Stunden Arbeit sind kein einstündiges Workout.",
+        "text": "<p>GRUNDKRAFT denkt Versorgung nicht rund um eine Trainingssession, sondern entlang eines echten Tages: früh los, lange Belastung, wenig perfekte Pausen und danach ist das Leben noch nicht vorbei.</p>"
+      },
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "time": "06:00", "heading": "Startklar", "text": "Vorbereiten, auffüllen, los. Je einfacher die Routine, desto eher findet sie im Alltag statt." } },
+        "step_2": { "type": "step", "settings": { "time": "10:30", "heading": "Schon mittendrin", "text": "Arbeit, Wetter, Fahrten oder Bewegung laufen längst. Trinken und Versorgung dürfen nicht kompliziert werden." } },
+        "step_3": { "type": "step", "settings": { "time": "14:30", "heading": "Der lange Nachmittag", "text": "Der Tag ist noch nicht vorbei. Genau hier zeigt sich, ob eine Routine alltagstauglich gedacht ist." } },
+        "step_4": { "type": "step", "settings": { "time": "18:00+", "heading": "Leben danach", "text": "Feierabend heißt nicht automatisch Stillstand. Familie, Haushalt, Training oder einfach Regeneration kommen danach." } }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"]
+    },
     "tagwerk_feature": {
       "type": "gk-product-feature",
       "settings": {
@@ -143,5 +157,5 @@
       }
     }
   },
-  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "story", "business", "community", "ingredients", "faq", "newsletter"]
+  "order": ["hero", "pillars", "workday", "tagwerk_feature", "toolbox", "story", "business", "community", "ingredients", "faq", "newsletter"]
 }
