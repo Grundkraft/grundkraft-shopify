@@ -1,30 +1,61 @@
 <footer class="gk-footer">
   <div class="gk-container">
+    <div class="gk-footer__topline" aria-hidden="true"><span>GRUNDKRAFT</span><span>GEMACHT FÜR MACHER.</span></div>
+
     <div class="gk-footer__grid">
-      <div>
-        <a class="gk-logo" href="{{ routes.root_url }}">
-          <span class="gk-logo__mark">GK</span>
-          <span>GRUNDKRAFT</span>
+      <div class="gk-footer__brand">
+        <a class="gk-logo" href="{{ routes.root_url }}" aria-label="GRUNDKRAFT Startseite">
+          <img class="gk-logo__fallback" src="{{ 'gk-logo.svg' | asset_url }}" width="184" height="33" loading="lazy" alt="GRUNDKRAFT">
         </a>
-        <p class="gk-copy" style="margin-top:18px;max-width:42ch">{{ section.settings.intro }}</p>
+        <p class="gk-copy">{{ section.settings.intro }}</p>
+        <div class="gk-footer__mark" aria-hidden="true">G</div>
       </div>
 
-      {% for block in section.blocks %}
-        <div {{ block.shopify_attributes }}>
-          <p class="gk-eyebrow">{{ block.settings.heading }}</p>
-          {% if block.settings.menu != blank %}
-            <div style="display:grid;gap:10px">
-              {% for link in block.settings.menu.links %}
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              {% endfor %}
-            </div>
-          {% endif %}
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="gk-footer__column" {{ block.shopify_attributes }}>
+            <p class="gk-footer__heading">{{ block.settings.heading }}</p>
+            {% if block.settings.menu != blank %}
+              <div class="gk-footer__links">
+                {% for link in block.settings.menu.links %}
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="gk-footer__column">
+          <p class="gk-footer__heading">Entdecken</p>
+          <div class="gk-footer__links">
+            <a href="#anwendungsbereiche">Anwendungsbereiche</a>
+            <a href="#produkte">Produkte</a>
+            <a href="#inhaltsstoffe">Inhaltsstoffe</a>
+            <a href="#faq">FAQ</a>
+          </div>
         </div>
-      {% endfor %}
+        <div class="gk-footer__column">
+          <p class="gk-footer__heading">GRUNDKRAFT</p>
+          <div class="gk-footer__links">
+            <a href="#unsere-idee">Unsere Idee</a>
+            <a href="#fuer-betriebe">Für Betriebe</a>
+            <a href="#die-macher">Die Macher</a>
+          </div>
+        </div>
+        <div class="gk-footer__column">
+          <p class="gk-footer__heading">Rechtliches</p>
+          <div class="gk-footer__links">
+            {% if shop.privacy_policy.body != blank %}<a href="{{ shop.privacy_policy.url }}">Datenschutz</a>{% endif %}
+            {% if shop.terms_of_service.body != blank %}<a href="{{ shop.terms_of_service.url }}">AGB</a>{% endif %}
+            {% if shop.shipping_policy.body != blank %}<a href="{{ shop.shipping_policy.url }}">Versand</a>{% endif %}
+            {% if shop.refund_policy.body != blank %}<a href="{{ shop.refund_policy.url }}">Widerruf & Rückgabe</a>{% endif %}
+          </div>
+        </div>
+      {% endif %}
     </div>
 
     <div class="gk-footer__bottom">
-      <span>© {{ 'now' | date: '%Y' }} GRUNDKRAFT. {{ 'footer.rights' | t }}</span>
+      <span>© {{ 'now' | date: '%Y' }} GRUNDKRAFT.</span>
       <span>Gemacht für Macher.</span>
     </div>
   </div>
@@ -45,10 +76,10 @@
   "blocks": [
     {
       "type": "menu",
-      "name": "Menu column",
+      "name": "Menüspalte",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "GRUNDKRAFT" },
-        { "type": "link_list", "id": "menu", "label": "Menu" }
+        { "type": "text", "id": "heading", "label": "Überschrift", "default": "GRUNDKRAFT" },
+        { "type": "link_list", "id": "menu", "label": "Menü" }
       ]
     }
   ]
