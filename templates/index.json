@@ -86,6 +86,20 @@
       },
       "block_order": ["business_1", "business_2", "business_3"]
     },
+    "community": {
+      "type": "gk-community",
+      "settings": {
+        "eyebrow": "Die Macher",
+        "heading": "Kein Lifestyle-Club. Eine Haltung.",
+        "text": "<p>Die Macher sind Menschen, die ihren Alltag nicht für eine Kamera inszenieren müssen. Sie arbeiten, kümmern sich, bewegen etwas und wollen Produkte, die genau dazu passen.</p>"
+      },
+      "blocks": {
+        "maker_1": { "type": "maker_world", "settings": { "heading": "Im Job", "text": "Bau, Pflege, Produktion, Werkstatt, Außendienst und überall dort, wo ein Tag körperlich wird." } },
+        "maker_2": { "type": "maker_world", "settings": { "heading": "Im Alltag", "text": "Familie, Haushalt, Wege und Verantwortung hören nach Feierabend nicht einfach auf." } },
+        "maker_3": { "type": "maker_world", "settings": { "heading": "Im echten Leben", "text": "Garten, Bewegung, Projekte und alles, was man macht, weil Stillstand nicht der Plan ist." } }
+      },
+      "block_order": ["maker_1", "maker_2", "maker_3"]
+    },
     "ingredients": {
       "type": "gk-ingredients",
       "settings": {
@@ -117,7 +131,17 @@
         "faq_4": { "type": "faq", "settings": { "question": "Wann kann ich die Produkte kaufen?", "answer": "<p>Ein verbindlicher Verkaufsstart wird erst genannt, wenn Produkt, Kennzeichnung und Lieferfähigkeit tatsächlich stehen.</p>" } }
       },
       "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
+    },
+    "newsletter": {
+      "type": "gk-newsletter",
+      "settings": {
+        "eyebrow": "Werkstatt-Post",
+        "heading": "Wenn etwas fertig ist, sagen wir Bescheid.",
+        "text": "<p>Produktstarts, neue Varianten und Einblicke in die Entwicklung. Kein tägliches Dauerfeuer.</p>",
+        "button_label": "Eintragen",
+        "note": "Abmeldung jederzeit möglich."
+      }
     }
   },
-  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "story", "business", "ingredients", "faq"]
+  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "story", "business", "community", "ingredients", "faq", "newsletter"]
 }
