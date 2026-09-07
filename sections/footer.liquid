@@ -28,18 +28,19 @@
         <div class="gk-footer__column">
           <p class="gk-footer__heading">Entdecken</p>
           <div class="gk-footer__links">
-            <a href="#anwendungsbereiche">Anwendungsbereiche</a>
-            <a href="#produkte">Produkte</a>
-            <a href="#inhaltsstoffe">Inhaltsstoffe</a>
-            <a href="#faq">FAQ</a>
+            <a href="{{ routes.root_url }}#anwendungsbereiche">Anwendungsbereiche</a>
+            <a href="{{ routes.all_products_collection_url }}">Produkte</a>
+            <a href="{{ routes.root_url }}#inhaltsstoffe">Inhaltsstoffe</a>
+            <a href="{{ routes.root_url }}#faq">FAQ</a>
           </div>
         </div>
         <div class="gk-footer__column">
           <p class="gk-footer__heading">GRUNDKRAFT</p>
           <div class="gk-footer__links">
-            <a href="#unsere-idee">Unsere Idee</a>
-            <a href="#fuer-betriebe">Für Betriebe</a>
-            <a href="#die-macher">Die Macher</a>
+            <a href="{{ routes.root_url }}#unsere-idee">Unsere Idee</a>
+            <a href="{{ routes.root_url }}#fuer-betriebe">Für Betriebe</a>
+            <a href="{{ routes.root_url }}#die-macher">Die Macher</a>
+            {% if blogs.size > 0 %}{% for blog_item in blogs limit: 1 %}<a href="{{ blog_item.url }}">Wissen</a>{% endfor %}{% endif %}
           </div>
         </div>
         <div class="gk-footer__column">
