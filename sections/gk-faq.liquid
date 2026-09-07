@@ -1,0 +1,58 @@
+<section id="faq" class="gk-section gk-faq-section">
+  <div class="gk-container">
+    <header class="gk-split-head gk-faq-head">
+      <div>
+        {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+        <h2 class="gk-heading gk-heading--lg">{{ section.settings.heading | escape }}</h2>
+      </div>
+      {% if section.settings.text != blank %}<div class="gk-copy">{{ section.settings.text }}</div>{% endif %}
+    </header>
+
+    <div class="gk-faq-list">
+      {% for block in section.blocks %}
+        <details class="gk-faq-item" {{ block.shopify_attributes }}>
+          <summary>
+            <span>{{ block.settings.question | escape }}</span>
+            <span class="gk-faq-item__plus" aria-hidden="true">+</span>
+          </summary>
+          <div class="gk-faq-item__answer">{{ block.settings.answer }}</div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "section-gk-faq",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Kurz geklärt" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Fragen, die man vor dem Kauf stellen darf." },
+    { "type": "richtext", "id": "text", "label": "Einleitung", "default": "<p>Keine Hochglanz-Antworten um jeden Preis. Solange Produkte noch entwickelt werden, sagen wir genau das.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Frage",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Frage", "default": "Für wen ist GRUNDKRAFT gedacht?" },
+        { "type": "richtext", "id": "answer", "label": "Antwort", "default": "<p>Für Menschen, deren Alltag körperlich fordert: im Beruf, zu Hause und darüber hinaus. Die Marke ist nicht als klassische Fitness- oder Bodybuilding-Marke aufgebaut.</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Für wen ist GRUNDKRAFT gedacht?", "answer": "<p>Für Menschen, deren Alltag körperlich fordert: im Beruf, zu Hause und darüber hinaus. Die Marke ist nicht als klassische Fitness- oder Bodybuilding-Marke aufgebaut.</p>" } },
+        { "type": "faq", "settings": { "question": "Sind die Rezepturen bereits final?", "answer": "<p>Noch nicht bei allen Produkten. Wo Rezeptur, Dosierung oder Kennzeichnung nicht final bestätigt sind, wird das im Shop als Entwicklung oder Vorbereitung gekennzeichnet.</p>" } },
+        { "type": "faq", "settings": { "question": "Warum gibt es Produkte mit unterschiedlichen Aufgaben?", "answer": "<p>Weil ein langer Arbeitstag, eine tägliche Basisroutine und gezielte Ergänzungen unterschiedliche Anforderungen haben. GRUNDKRAFT setzt deshalb auf einen Werkzeugkasten statt auf ein einziges Alles-in-einem-Produkt.</p>" } },
+        { "type": "faq", "settings": { "question": "Wann kann ich die Produkte kaufen?", "answer": "<p>Ein verbindlicher Verkaufsstart wird erst genannt, wenn Produkt, Kennzeichnung und Lieferfähigkeit tatsächlich stehen.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
