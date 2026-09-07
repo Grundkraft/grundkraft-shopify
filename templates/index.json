@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "gk-hero",
+      "settings": {
+        "eyebrow": "Für echte Arbeitstage",
+        "heading": "Gemacht für Macher.",
+        "claim": "GRUNDKRAFT für deinen Alltag",
+        "text": "<p>Funktionale Versorgung für Menschen, die jeden Tag körperlich leisten.</p>",
+        "primary_label": "Produkte entdecken",
+        "secondary_label": "Unsere Idee"
+      }
+    },
+    "pillars": {
+      "type": "gk-pillars",
+      "settings": {
+        "eyebrow": "Das System",
+        "heading": "Die 3 Säulen des Alltags",
+        "text": "<p>GRUNDKRAFT denkt Versorgung entlang eines echten Arbeitstages: Leistung, Stabilität und Reserve.</p>"
+      },
+      "blocks": {
+        "pillar_1": { "type": "pillar", "settings": { "heading": "TAGWERK", "text": "Versorgung während langer und körperlich fordernder Tage." } },
+        "pillar_2": { "type": "pillar", "settings": { "heading": "STANDFEST", "text": "Für die langfristige Routine rund um Belastung und Alltag." } },
+        "pillar_3": { "type": "pillar", "settings": { "heading": "KRAFTRESERVE", "text": "Gezielte Ergänzung für Kraft, Training und tägliche Reserve." } }
+      },
+      "block_order": ["pillar_1", "pillar_2", "pillar_3"]
+    }
+  },
+  "order": ["hero", "pillars"]
+}
