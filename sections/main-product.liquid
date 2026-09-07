@@ -1,22 +1,54 @@
 {% liquid
   assign current_variant = product.selected_or_first_available_variant
   assign featured_media = current_variant.featured_media | default: product.featured_media
+  assign placeholder_asset = 'product-tub-tagwerk.svg'
+  if product.handle contains 'standfest'
+    assign placeholder_asset = 'product-tub-standfest.svg'
+  elsif product.handle contains 'kraftreserve'
+    assign placeholder_asset = 'product-tub-kraftreserve.svg'
+  endif
 %}
 
 <section class="gk-product-page" data-gk-product>
   <div class="gk-container gk-product-page__grid">
     <div class="gk-product-gallery">
-      <div class="gk-product-gallery__stage">
+      <div class="gk-product-gallery__stage" data-gk-gallery-stage>
         {% if featured_media != blank %}
-          {{ featured_media.preview_image | image_url: width: 1400 | image_tag: widths: '600,900,1200,1400', sizes: '(min-width: 900px) 52vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: product.title }}
-        {% elsif product.handle contains 'standfest' %}
-          <img class="gk-product-gallery__placeholder" src="{{ 'product-tub-standfest.svg' | asset_url }}" width="360" height="504" loading="eager" alt="{{ product.title | escape }}">
-        {% elsif product.handle contains 'kraftreserve' %}
-          <img class="gk-product-gallery__placeholder" src="{{ 'product-tub-kraftreserve.svg' | asset_url }}" width="360" height="504" loading="eager" alt="{{ product.title | escape }}">
+          <img
+            src="{{ featured_media.preview_image | image_url: width: 1400 }}"
+            srcset="{{ featured_media.preview_image | image_url: width: 600 }} 600w, {{ featured_media.preview_image | image_url: width: 900 }} 900w, {{ featured_media.preview_image | image_url: width: 1200 }} 1200w, {{ featured_media.preview_image | image_url: width: 1400 }} 1400w"
+            sizes="(min-width: 900px) 52vw, 100vw"
+            width="{{ featured_media.preview_image.width }}"
+            height="{{ featured_media.preview_image.height }}"
+            loading="eager"
+            fetchpriority="high"
+            alt="{{ featured_media.alt | default: product.title | escape }}"
+            data-gk-main-media
+            data-media-id="{{ featured_media.id }}"
+          >
         {% else %}
-          <img class="gk-product-gallery__placeholder" src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="360" height="504" loading="eager" alt="{{ product.title | escape }}">
+          <img class="gk-product-gallery__placeholder" src="{{ placeholder_asset | asset_url }}" width="360" height="504" loading="eager" alt="{{ product.title | escape }}" data-gk-main-media>
         {% endif %}
       </div>
+
+      {% if product.media.size > 1 %}
+        <div class="gk-product-gallery__thumbs" aria-label="Produktbilder">
+          {% for media in product.media %}
+            <button
+              class="gk-product-thumb{% if media.id == featured_media.id %} is-active{% endif %}"
+              type="button"
+              data-gk-thumb
+              data-media-id="{{ media.id }}"
+              data-media-src="{{ media.preview_image | image_url: width: 1400 }}"
+              data-media-srcset="{{ media.preview_image | image_url: width: 600 }} 600w, {{ media.preview_image | image_url: width: 900 }} 900w, {{ media.preview_image | image_url: width: 1400 }} 1400w"
+              data-media-alt="{{ media.alt | default: product.title | escape }}"
+              aria-label="Bild {{ forloop.index }} anzeigen"
+            >
+              {{ media.preview_image | image_url: width: 180 | image_tag: loading: 'lazy', alt: '' }}
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
 
     <div class="gk-product-info">
@@ -29,6 +61,10 @@
         <s data-gk-compare-price {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>{% if current_variant.compare_at_price > current_variant.price %}{{ current_variant.compare_at_price | money }}{% endif %}</s>
       </div>
       <div class="gk-product-tax">Preis inkl. Steuern, sofern anwendbar. Versand wird an der Kasse berechnet.</div>
+      <div class="gk-product-state">
+        <span data-gk-availability>{% if current_variant.available %}Verfügbar{% else %}Aktuell nicht verfügbar{% endif %}</span>
+        {% if current_variant.sku != blank %}<span data-gk-sku>Art.-Nr. {{ current_variant.sku }}</span>{% endif %}
+      </div>
 
       {% if product.description != blank %}
         <div class="gk-product-description rte">{{ product.description }}</div>
@@ -37,12 +73,14 @@
       {% endif %}
 
       {% form 'product', product, class: 'gk-product-form', id: 'GkProductForm' %}
+        {% if form.errors %}<div class="gk-form-error" role="alert">{{ form.errors | default_errors }}</div>{% endif %}
+
         {% unless product.has_only_default_variant %}
           <div>
             <label class="gk-field-label" for="GkVariantSelect">Variante</label>
             <select id="GkVariantSelect" class="gk-select" name="id" data-gk-variant-select>
               {% for variant in product.variants %}
-                <option value="{{ variant.id }}" {% if variant == current_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                <option value="{{ variant.id }}" {% if variant == current_variant %}selected{% endif %}>
                   {{ variant.title }}{% unless variant.available %} · Nicht verfügbar{% endunless %}
                 </option>
               {% endfor %}
@@ -62,12 +100,16 @@
         <button class="gk-add" type="submit" name="add" data-gk-add {% unless current_variant.available %}disabled{% endunless %}>
           {% if current_variant.available %}In den Warenkorb{% else %}Nicht verfügbar{% endif %}
         </button>
+
+        {% if section.settings.show_dynamic_checkout and current_variant.available %}
+          <div class="gk-dynamic-checkout">{{ form | payment_button }}</div>
+        {% endif %}
       {% endform %}
 
       <div class="gk-product-assurance">
         <div><strong>Klare Funktion</strong><span>Jedes Produkt bekommt einen nachvollziehbaren Platz im System.</span></div>
         <div><strong>Transparente Angaben</strong><span>Finale Mengen und Hinweise stehen direkt am fertigen Produkt.</span></div>
-        <div><strong>Für echte Routinen</strong><span>Kein Fitnessstudio-Zirkus, sondern für Alltag und Arbeit gedacht.</span></div>
+        <div><strong>Für echte Routinen</strong><span>Für Alltag und Arbeit gedacht, nicht als Fitness-Inszenierung.</span></div>
       </div>
 
       <div class="gk-product-accordions">
@@ -79,6 +121,12 @@
           <summary>Versand & Verfügbarkeit</summary>
           <div class="gk-copy"><p>Verfügbarkeit und Versandinformationen werden anhand der final eingerichteten Produkte, Märkte und Versandprofile angezeigt.</p></div>
         </details>
+        {% if product.metafields.custom.ingredients != blank %}
+          <details>
+            <summary>Inhaltsstoffe</summary>
+            <div class="gk-copy">{{ product.metafields.custom.ingredients | metafield_tag }}</div>
+          </details>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -92,6 +140,8 @@
   "name": "GRUNDKRAFT Produktseite",
   "tag": "section",
   "class": "section-main-product",
-  "settings": []
+  "settings": [
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Dynamischen Checkout-Button anzeigen", "default": true }
+  ]
 }
 {% endschema %}
