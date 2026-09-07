@@ -1,0 +1,70 @@
+<section id="unsere-idee" class="gk-section gk-story-section">
+  <div class="gk-container gk-story">
+    <div class="gk-story__visual" aria-hidden="true">
+      <div class="gk-story__metal-g"></div>
+      <div class="gk-story__plate">
+        <span class="gk-story__stamp">GRUNDKRAFT</span>
+        <strong>ENTSTANDEN AUS<br>ECHTER ARBEIT.</strong>
+        <small>Kein Fitnessstudio-Konzept. Ein System für Tage, die schon Leistung genug sind.</small>
+      </div>
+    </div>
+
+    <div class="gk-story__content">
+      {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+      <h2 class="gk-heading gk-heading--lg">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.text != blank %}<div class="gk-copy gk-story__copy">{{ section.settings.text }}</div>{% endif %}
+
+      <div class="gk-story__facts">
+        {% for block in section.blocks %}
+          <div class="gk-story__fact" {{ block.shopify_attributes }}>
+            <span>{{ forloop.index | prepend: '0' }}</span>
+            <div>
+              <strong>{{ block.settings.heading | escape }}</strong>
+              <p>{{ block.settings.text | escape }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.settings.button_label != blank %}
+        <a class="gk-btn gk-btn--secondary" href="{{ section.settings.button_link | default: '#produkte' }}">{{ section.settings.button_label | escape }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Unsere Idee / Story",
+  "tag": "section",
+  "class": "section-gk-story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Unsere Idee" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Entstanden aus echter Arbeit." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>GRUNDKRAFT ist aus einem einfachen Gedanken entstanden: Wer jeden Tag körperlich arbeitet, braucht keine Marke, die ihm noch mehr Leistung predigt. Sondern Produkte, die sich sinnvoll in einen echten Alltag einfügen.</p><p>Deshalb denken wir nicht in Workout-Minuten, sondern in langen Tagen, Wetter, Fahrten, Familie, Arbeit und dem, was danach noch übrig ist.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Produkte ansehen" },
+    { "type": "url", "id": "button_link", "label": "Button-Link" }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Grundsatz",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titel", "default": "Alltag vor Inszenierung" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Produkte müssen in echte Routinen passen, nicht nur auf eine Werbefläche." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Unsere Idee / Story",
+      "blocks": [
+        { "type": "fact", "settings": { "heading": "Alltag vor Inszenierung", "text": "Produkte müssen in echte Routinen passen, nicht nur auf eine Werbefläche." } },
+        { "type": "fact", "settings": { "heading": "Klare Aufgabe", "text": "Jedes Produkt bekommt einen nachvollziehbaren Platz im Werkzeugkasten." } },
+        { "type": "fact", "settings": { "heading": "Transparenz statt Nebel", "text": "Was noch nicht final ist, wird auch nicht als fertig verkauft." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
