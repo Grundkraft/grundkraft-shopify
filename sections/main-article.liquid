@@ -1,0 +1,27 @@
+<section class="gk-commerce-hero">
+  <div class="gk-container gk-commerce-hero__inner">
+    <p class="gk-eyebrow">Wissen · {{ article.published_at | date: '%d.%m.%Y' }}</p>
+    <h1>{{ article.title }}</h1>
+    {% if article.excerpt != blank %}<div class="gk-copy">{{ article.excerpt }}</div>{% endif %}
+  </div>
+</section>
+
+<section class="gk-page">
+  <div class="gk-container">
+    <article class="gk-page__content rte">
+      {% if article.image %}
+        <div style="margin:-10px -10px 28px;overflow:hidden;border-radius:7px">
+          {{ article.image | image_url: width: 1600 | image_tag: widths: '700,1000,1300,1600', sizes: '(min-width: 900px) 900px, 100vw', loading: 'eager', alt: article.title }}
+        </div>
+      {% endif %}
+      {{ article.content }}
+      <div style="margin-top:34px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)">
+        <a class="gk-btn gk-btn--secondary" href="{{ blog.url }}">Zurück zu {{ blog.title }}</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{"name":"GRUNDKRAFT Artikel","tag":"section","class":"section-main-article","settings":[]}
+{% endschema %}
