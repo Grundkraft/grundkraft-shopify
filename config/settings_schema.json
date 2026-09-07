@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "GRUNDKRAFT",
-    "theme_version": "0.1.0",
+    "theme_version": "0.1.1",
     "theme_author": "GRUNDKRAFT",
     "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
     "theme_support_url": "https://shopify.dev/docs/storefronts/themes"
@@ -43,19 +43,19 @@
         "step": 1,
         "unit": "px",
         "label": "Border radius",
-        "default": 2
+        "default": 6
       }
     ]
   },
   {
     "name": "Colors",
     "settings": [
-      { "type": "color", "id": "color_background", "label": "Background", "default": "#111214" },
-      { "type": "color", "id": "color_surface", "label": "Surface", "default": "#1B1D20" },
-      { "type": "color", "id": "color_text", "label": "Text", "default": "#E9E4D9" },
-      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#9C9B96" },
-      { "type": "color", "id": "color_accent", "label": "Accent", "default": "#F26A21" },
-      { "type": "color", "id": "color_border", "label": "Border", "default": "#34373B" }
+      { "type": "color", "id": "color_background", "label": "Background", "default": "#121212" },
+      { "type": "color", "id": "color_surface", "label": "Surface", "default": "#1B1B1B" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#F3EFE7" },
+      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#918C86" },
+      { "type": "color", "id": "color_accent", "label": "Accent", "default": "#E15313" },
+      { "type": "color", "id": "color_border", "label": "Border", "default": "#404040" }
     ]
   },
   {
@@ -78,12 +78,12 @@
   {
     "name": "Product colors",
     "settings": [
-      { "type": "color", "id": "color_tagwerk", "label": "TAGWERK", "default": "#F26A21" },
-      { "type": "color", "id": "color_standfest", "label": "STANDFEST", "default": "#2E93A8" },
-      { "type": "color", "id": "color_kraftreserve", "label": "KRAFTRESERVE", "default": "#B7D93D" },
-      { "type": "color", "id": "color_omega", "label": "OMEGA-3", "default": "#1BA7A8" },
-      { "type": "color", "id": "color_basis", "label": "BASIS", "default": "#4E9A51" },
-      { "type": "color", "id": "color_feierabend", "label": "FEIERABEND", "default": "#495D9B" }
+      { "type": "color", "id": "color_tagwerk", "label": "TAGWERK", "default": "#E15313" },
+      { "type": "color", "id": "color_standfest", "label": "STANDFEST", "default": "#355582" },
+      { "type": "color", "id": "color_kraftreserve", "label": "KRAFTRESERVE", "default": "#456C4F" },
+      { "type": "color", "id": "color_omega", "label": "OMEGA-3", "default": "#238F98" },
+      { "type": "color", "id": "color_basis", "label": "BASIS", "default": "#4E7F4E" },
+      { "type": "color", "id": "color_feierabend", "label": "FEIERABEND", "default": "#4C5288" }
     ]
   }
 ]
