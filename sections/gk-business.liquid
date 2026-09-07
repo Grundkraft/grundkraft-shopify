@@ -1,0 +1,73 @@
+<section id="fuer-betriebe" class="gk-section gk-business-section">
+  <div class="gk-container">
+    <div class="gk-business">
+      <div class="gk-business__copy">
+        {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+        <h2 class="gk-heading gk-heading--lg">{{ section.settings.heading | escape }}</h2>
+        {% if section.settings.text != blank %}<div class="gk-copy">{{ section.settings.text }}</div>{% endif %}
+
+        <div class="gk-business__benefits">
+          {% for block in section.blocks %}
+            <article class="gk-business__benefit" {{ block.shopify_attributes }}>
+              <span>{{ forloop.index | prepend: '0' }}</span>
+              <div>
+                <h3>{{ block.settings.heading | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        {% if section.settings.button_label != blank %}
+          <a class="gk-btn gk-btn--primary" href="{{ section.settings.button_link | default: '#faq' }}">{{ section.settings.button_label | escape }}</a>
+        {% endif %}
+      </div>
+
+      <aside class="gk-business__panel">
+        <div class="gk-business__panel-grid" aria-hidden="true"></div>
+        <span class="gk-business__kicker">FÜR BETRIEBE</span>
+        <strong>VERSORGUNG FÜR DIE MENSCHEN,<br>DIE DEINEN BETRIEB AM LAUFEN HALTEN.</strong>
+        <div class="gk-business__mini">
+          <span>Baustelle</span><span>Pflege</span><span>Produktion</span><span>Außendienst</span>
+        </div>
+        <p>Geplant sind einfache Lösungen für Teams, ohne komplizierte Fitnesslogik.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Für Betriebe",
+  "tag": "section",
+  "class": "section-gk-business",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Für Betriebe" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Versorgung als Teil eines guten Arbeitstages." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>GRUNDKRAFT soll auch für Betriebe funktionieren, die ihren Teams eine einfache und nachvollziehbare Versorgungslösung anbieten möchten. Ohne Fitnesssprech, ohne komplizierte Routinen.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Interesse vormerken" },
+    { "type": "url", "id": "button_link", "label": "Button-Link" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Vorteil",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titel", "default": "Einfach integrierbar" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Gedacht für Pausenraum, Fahrzeug, Lager oder Baustelle." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Für Betriebe",
+      "blocks": [
+        { "type": "benefit", "settings": { "heading": "Einfach integrierbar", "text": "Gedacht für Pausenraum, Fahrzeug, Lager oder Baustelle." } },
+        { "type": "benefit", "settings": { "heading": "Klare Produktlogik", "text": "Teams sollen verstehen, welches Produkt wofür gedacht ist." } },
+        { "type": "benefit", "settings": { "heading": "Skalierbar geplant", "text": "B2B-Pakete und wiederkehrende Versorgung können später darauf aufbauen." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
