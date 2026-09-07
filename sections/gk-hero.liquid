@@ -1,29 +1,27 @@
+{% liquid
+  assign hero_product = all_products['tagwerk']
+  assign primary_url = section.settings.primary_link
+  if primary_url == blank and hero_product != blank
+    assign primary_url = hero_product.url
+  elsif primary_url == blank
+    assign primary_url = routes.all_products_collection_url
+  endif
+  assign secondary_url = section.settings.secondary_link | default: routes.all_products_collection_url
+%}
+
 <section class="gk-hero gk-grain{% unless section.settings.use_custom_image %} gk-hero--master{% endunless %}">
   <div class="gk-hero__backdrop" aria-hidden="true"></div>
 
   <div class="gk-container gk-hero__grid">
     <div class="gk-hero__content">
-      {% if section.settings.eyebrow != blank %}
-        <p class="gk-eyebrow">{{ section.settings.eyebrow }}</p>
-      {% endif %}
-
+      {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow }}</p>{% endif %}
       <h1 class="gk-heading gk-heading--xl">{{ section.settings.heading }}</h1>
-
-      {% if section.settings.claim != blank %}
-        <div class="gk-hero__claim">{{ section.settings.claim }}</div>
-      {% endif %}
-
-      {% if section.settings.text != blank %}
-        <div class="gk-copy gk-hero__copy">{{ section.settings.text }}</div>
-      {% endif %}
+      {% if section.settings.claim != blank %}<div class="gk-hero__claim">{{ section.settings.claim }}</div>{% endif %}
+      {% if section.settings.text != blank %}<div class="gk-copy gk-hero__copy">{{ section.settings.text }}</div>{% endif %}
 
       <div class="gk-btn-row">
-        {% if section.settings.primary_label != blank %}
-          <a class="gk-btn gk-btn--primary" href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}">{{ section.settings.primary_label }}</a>
-        {% endif %}
-        {% if section.settings.secondary_label != blank %}
-          <a class="gk-btn gk-btn--secondary" href="{{ section.settings.secondary_link | default: routes.all_products_collection_url }}">{{ section.settings.secondary_label }}</a>
-        {% endif %}
+        {% if section.settings.primary_label != blank %}<a class="gk-btn gk-btn--primary" href="{{ primary_url }}">{{ section.settings.primary_label }}</a>{% endif %}
+        {% if section.settings.secondary_label != blank %}<a class="gk-btn gk-btn--secondary" href="{{ secondary_url }}">{{ section.settings.secondary_label }}</a>{% endif %}
       </div>
 
       <div class="gk-hero__micro" aria-label="GRUNDKRAFT Prinzipien">
@@ -44,10 +42,7 @@
         </div>
         <div class="gk-hero__frame-lines" aria-hidden="true"></div>
       </div>
-
-      {% if section.settings.show_product %}
-        <img class="gk-hero__product" src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="300" height="420" loading="eager" alt="TAGWERK Produktbehälter">
-      {% endif %}
+      {% if section.settings.show_product %}<a href="{{ primary_url }}" aria-label="TAGWERK ansehen"><img class="gk-hero__product" src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="300" height="420" loading="eager" alt="TAGWERK Produktbehälter"></a>{% endif %}
     </div>
   </div>
 </section>
@@ -71,8 +66,6 @@
     { "type": "text", "id": "secondary_label", "label": "Sekundärer Button", "default": "Zum Sortiment" },
     { "type": "url", "id": "secondary_link", "label": "Sekundärer Link" }
   ],
-  "presets": [
-    { "name": "GRUNDKRAFT Hero" }
-  ]
+  "presets": [{ "name": "GRUNDKRAFT Hero" }]
 }
 {% endschema %}
