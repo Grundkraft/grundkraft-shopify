@@ -1,0 +1,22 @@
+{
+  "current": {
+    "logo_width": 180,
+    "page_width": 1500,
+    "border_radius": 2,
+    "color_background": "#111214",
+    "color_surface": "#1B1D20",
+    "color_text": "#E9E4D9",
+    "color_muted": "#9C9B96",
+    "color_accent": "#F26A21",
+    "color_border": "#34373B",
+    "type_header_font": "assistant_n7",
+    "type_body_font": "assistant_n4",
+    "color_tagwerk": "#F26A21",
+    "color_standfest": "#2E93A8",
+    "color_kraftreserve": "#B7D93D",
+    "color_omega": "#1BA7A8",
+    "color_basis": "#4E9A51",
+    "color_feierabend": "#495D9B"
+  },
+  "presets": {}
+}
