@@ -39,7 +39,7 @@
           {% if section.settings.use_custom_image and section.settings.image != blank %}
             {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600,900,1200,1600', sizes: '(min-width: 901px) 48vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image_alt }}
           {% else %}
-            <img src="{{ 'gk-hero-people-metal.jpg' | asset_url }}" width="680" height="760" loading="eager" fetchpriority="high" alt="Menschen aus unterschiedlichen Lebensbereichen vor metallischem GRUNDKRAFT G">
+            <img src="{{ 'gk-hero-people-metal.webp' | asset_url }}" width="260" height="286" loading="eager" fetchpriority="high" alt="Menschen aus unterschiedlichen Lebensbereichen vor metallischem GRUNDKRAFT G">
           {% endif %}
         </div>
         <div class="gk-hero__frame-lines" aria-hidden="true"></div>
