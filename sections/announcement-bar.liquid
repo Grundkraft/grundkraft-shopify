@@ -1,0 +1,15 @@
+{% if section.settings.show_bar %}
+  <div style="background:var(--gk-accent);color:#111;text-align:center;padding:8px 16px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;font-size:.78rem">
+    {{ section.settings.text }}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "checkbox", "id": "show_bar", "label": "Show bar", "default": true },
+    { "type": "text", "id": "text", "label": "Text", "default": "GRUNDKRAFT · Gemacht für Macher." }
+  ]
+}
+{% endschema %}
