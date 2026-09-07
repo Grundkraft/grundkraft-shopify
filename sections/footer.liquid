@@ -1,0 +1,56 @@
+<footer class="gk-footer">
+  <div class="gk-container">
+    <div class="gk-footer__grid">
+      <div>
+        <a class="gk-logo" href="{{ routes.root_url }}">
+          <span class="gk-logo__mark">GK</span>
+          <span>GRUNDKRAFT</span>
+        </a>
+        <p class="gk-copy" style="margin-top:18px;max-width:42ch">{{ section.settings.intro }}</p>
+      </div>
+
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          <p class="gk-eyebrow">{{ block.settings.heading }}</p>
+          {% if block.settings.menu != blank %}
+            <div style="display:grid;gap:10px">
+              {% for link in block.settings.menu.links %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="gk-footer__bottom">
+      <span>© {{ 'now' | date: '%Y' }} GRUNDKRAFT. {{ 'footer.rights' | t }}</span>
+      <span>Gemacht für Macher.</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Funktionale Versorgung für Menschen, die jeden Tag körperlich leisten."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "GRUNDKRAFT" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ]
+}
+{% endschema %}
