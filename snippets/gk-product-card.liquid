@@ -1,6 +1,13 @@
 {% liquid
   assign card_product = product
   assign card_image = card_product.featured_media.preview_image | default: card_product.featured_image
+  assign product_identity = card_product.handle | append: ' ' | append: card_product.title | downcase
+  assign fallback_asset = 'product-tub-tagwerk.svg'
+  if product_identity contains 'standfest'
+    assign fallback_asset = 'product-tub-standfest.svg'
+  elsif product_identity contains 'kraftreserve'
+    assign fallback_asset = 'product-tub-kraftreserve.svg'
+  endif
 %}
 
 <article class="gk-product-card">
@@ -9,20 +16,14 @@
     <div class="gk-product-card__media">
       {% if card_image != blank %}
         {{ card_image | image_url: width: 900 | image_tag: widths: '360,540,720,900', sizes: '(min-width: 1000px) 30vw, (min-width: 620px) 50vw, 100vw', loading: 'lazy', alt: card_product.title }}
-      {% elsif card_product.handle contains 'standfest' %}
-        <img src="{{ 'product-tub-standfest.svg' | asset_url }}" width="320" height="448" loading="lazy" alt="{{ card_product.title | escape }}">
-      {% elsif card_product.handle contains 'kraftreserve' %}
-        <img src="{{ 'product-tub-kraftreserve.svg' | asset_url }}" width="320" height="448" loading="lazy" alt="{{ card_product.title | escape }}">
       {% else %}
-        <img src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="320" height="448" loading="lazy" alt="{{ card_product.title | escape }}">
+        <img src="{{ fallback_asset | asset_url }}" width="320" height="448" loading="lazy" alt="{{ card_product.title | escape }}">
       {% endif %}
     </div>
     <div class="gk-product-card__body">
       <h3 class="gk-product-card__title">{{ card_product.title }}</h3>
-      <div class="gk-product-card__price">
-        {% if card_product.price_varies %}ab {% endif %}{{ card_product.price | money }}
-      </div>
-      {% if card_product.vendor != blank %}<div class="gk-product-card__meta">{{ card_product.vendor }}</div>{% endif %}
+      <div class="gk-product-card__price">{% if card_product.price_varies %}ab {% endif %}{{ card_product.price | money }}</div>
+      <div class="gk-product-card__meta">{% if card_product.available %}Verfügbar{% else %}Bald verfügbar{% endif %}{% if card_product.vendor != blank %} · {{ card_product.vendor }}{% endif %}</div>
     </div>
   </a>
 </article>
