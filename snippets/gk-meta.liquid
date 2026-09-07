@@ -1,0 +1,24 @@
+{%- liquid
+  assign meta_title = page_title | default: shop.name
+  assign meta_description = page_description | default: shop.description | default: 'GRUNDKRAFT · Funktionale Versorgung für Menschen, die jeden Tag körperlich leisten.'
+  assign meta_url = canonical_url | default: request.origin
+  assign meta_image = page_image | default: settings.share_image
+-%}
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ meta_url }}">
+<meta property="og:title" content="{{ meta_title | escape }}">
+<meta property="og:type" content="{% if request.page_type == 'product' %}product{% elsif request.page_type == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:description" content="{{ meta_description | strip_html | escape }}">
+{% if meta_image != blank %}
+  <meta property="og:image" content="https:{{ meta_image | image_url: width: 1200 }}">
+  <meta property="og:image:secure_url" content="https:{{ meta_image | image_url: width: 1200 }}">
+{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ meta_title | escape }}">
+<meta name="twitter:description" content="{{ meta_description | strip_html | escape }}">
+
+{% if request.page_type == 'product' %}
+  <script type="application/ld+json">{{ product | structured_data }}</script>
+{% elsif request.page_type == 'article' %}
+  <script type="application/ld+json">{{ article | structured_data }}</script>
+{% endif %}
