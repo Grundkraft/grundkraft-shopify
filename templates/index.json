@@ -24,7 +24,45 @@
         "pillar_3": { "type": "pillar", "settings": { "heading": "KRAFTRESERVE", "text": "Gezielte Ergänzung für Kraft, Training und tägliche Reserve." } }
       },
       "block_order": ["pillar_1", "pillar_2", "pillar_3"]
+    },
+    "toolbox": {
+      "type": "gk-toolbox",
+      "settings": {
+        "eyebrow": "Das Sortiment",
+        "heading": "Dein Werkzeugkasten",
+        "text": "<p>Drei klare Produktwelten. Eine gemeinsame Designsprache. Später direkt mit den echten Shopify-Produkten verknüpft.</p>"
+      },
+      "blocks": {
+        "tagwerk": {
+          "type": "product_box",
+          "settings": {
+            "style": "tagwerk",
+            "title": "TAGWERK",
+            "subtitle": "Yuzu-Zitrone",
+            "status": "In Vorbereitung"
+          }
+        },
+        "standfest": {
+          "type": "product_box",
+          "settings": {
+            "style": "standfest",
+            "title": "STANDFEST",
+            "subtitle": "Daily Support",
+            "status": "In Vorbereitung"
+          }
+        },
+        "kraftreserve": {
+          "type": "product_box",
+          "settings": {
+            "style": "kraftreserve",
+            "title": "KRAFTRESERVE",
+            "subtitle": "Kreatin Monohydrat",
+            "status": "In Vorbereitung"
+          }
+        }
+      },
+      "block_order": ["tagwerk", "standfest", "kraftreserve"]
     }
   },
-  "order": ["hero", "pillars"]
+  "order": ["hero", "pillars", "toolbox"]
 }
