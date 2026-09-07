@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_background }}">
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} – {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} – {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} – {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% if settings.type_header_font != blank %}
+      {{ settings.type_header_font | font_face: font_display: 'swap' }}
+    {% endif %}
+    {% if settings.type_body_font != blank %}
+      {{ settings.type_body_font | font_face: font_display: 'swap' }}
+    {% endif %}
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      :root {
+        --gk-bg: {{ settings.color_background }};
+        --gk-surface: {{ settings.color_surface }};
+        --gk-text: {{ settings.color_text }};
+        --gk-muted: {{ settings.color_muted }};
+        --gk-accent: {{ settings.color_accent }};
+        --gk-border: {{ settings.color_border }};
+        --gk-max-width: {{ settings.page_width }}px;
+        --gk-radius: {{ settings.border_radius }}px;
+        --gk-font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+        --gk-font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+      }
+    </style>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name | handle }}">
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_text' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="gk-main" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>
