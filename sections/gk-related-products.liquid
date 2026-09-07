@@ -1,0 +1,36 @@
+{% liquid
+  assign related_collection = product.collections.first
+  assign shown = 0
+%}
+
+{% if related_collection != blank and related_collection.products_count > 1 %}
+  <section class="gk-related gk-section">
+    <div class="gk-container">
+      <div class="gk-related__head">
+        <div>
+          <p class="gk-eyebrow">Passt in denselben Werkzeugkasten</p>
+          <h2 class="gk-heading gk-heading--lg">Weitere Produkte</h2>
+        </div>
+        <a class="gk-btn gk-btn--secondary" href="{{ related_collection.url }}">Alle ansehen</a>
+      </div>
+      <div class="gk-product-grid">
+        {% for related_product in related_collection.products %}
+          {% unless related_product.id == product.id %}
+            {% render 'gk-product-card', product: related_product %}
+            {% assign shown = shown | plus: 1 %}
+            {% if shown >= 3 %}{% break %}{% endif %}
+          {% endunless %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Passende Produkte",
+  "tag": "section",
+  "class": "section-gk-related",
+  "settings": []
+}
+{% endschema %}
