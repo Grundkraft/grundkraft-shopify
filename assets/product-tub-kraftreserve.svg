@@ -1,1 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" role="img" aria-labelledby="title desc"><title id="title">GRUNDKRAFT KRAFTRESERVE product tub reference</title><desc id="desc">Matte black tub with workwear green label band.</desc><defs><linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#111"/><stop offset=".45" stop-color="#2a2a2a"/><stop offset=".72" stop-color="#171717"/><stop offset="1" stop-color="#090909"/></linearGradient><linearGradient id="label" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#202020"/><stop offset="1" stop-color="#101010"/></linearGradient><filter id="shadow" x="-30%" y="-20%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#000" flood-opacity=".45"/></filter></defs><g filter="url(#shadow)"><rect x="66" y="32" width="168" height="58" rx="12" fill="#0a0a0a"/><g stroke="#353535" stroke-width="3"><path d="M78 38v46M90 38v46M102 38v46M114 38v46M126 38v46M138 38v46M150 38v46M162 38v46M174 38v46M186 38v46M198 38v46M210 38v46M222 38v46"/></g><path d="M74 88h152c13 0 24 11 24 24v244c0 17-14 30-30 30H80c-17 0-30-14-30-30V112c0-13 11-24 24-24z" fill="url(#body)"/><path d="M58 132h184v206H58z" fill="url(#label)"/><path d="M58 132h184v42H58z" fill="#456C4F"/><path d="M58 321h184v17H58z" fill="#456C4F" opacity=".92"/><path d="M150 142l18 10v20l-18 10-18-10v-20z" fill="#101010"/><text x="150" y="166" text-anchor="middle" fill="#456C4F" font-size="24" font-family="Arial,Helvetica,sans-serif" font-weight="900">G</text><text x="150" y="224" text-anchor="middle" fill="#F3EFE7" font-size="25" font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-weight="900">KRAFTRESERVE</text><text x="150" y="250" text-anchor="middle" fill="#D6D0C7" font-size="12" font-family="Arial,Helvetica,sans-serif" font-weight="700">KREATIN MONOHYDRAT</text><line x1="92" y1="271" x2="208" y2="271" stroke="#456C4F" stroke-width="3"/><text x="150" y="295" text-anchor="middle" fill="#8F8A83" font-size="9" font-family="Arial,Helvetica,sans-serif">GEMACHT FÜR MACHER.</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 460" role="img" aria-labelledby="title desc">
+<title id="title">GRUNDKRAFT KRAFTRESERVE product tub</title><desc id="desc">Matte black supplement tub with green GRUNDKRAFT KRAFTRESERVE label.</desc>
+<defs>
+  <linearGradient id="body" x1="0" x2="1"><stop offset="0" stop-color="#090909"/><stop offset=".18" stop-color="#202020"/><stop offset=".5" stop-color="#303030"/><stop offset=".78" stop-color="#151515"/><stop offset="1" stop-color="#050505"/></linearGradient>
+  <linearGradient id="cap" x1="0" x2="0" y2="1"><stop stop-color="#252525"/><stop offset=".5" stop-color="#0a0a0a"/><stop offset="1" stop-color="#181818"/></linearGradient>
+  <linearGradient id="label" x1="0" x2="0" y2="1"><stop stop-color="#242424"/><stop offset="1" stop-color="#101010"/></linearGradient>
+  <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#5a8a62"/><stop offset=".58" stop-color="#456c4f"/><stop offset="1" stop-color="#294331"/></linearGradient>
+  <radialGradient id="shine" cx="32%" cy="20%" r="75%"><stop stop-color="#fff" stop-opacity=".2"/><stop offset=".45" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="#fff" opacity=".12"/></pattern>
+  <filter id="shadow" x="-40%" y="-25%" width="180%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="#000" flood-opacity=".55"/></filter>
+</defs>
+<g filter="url(#shadow)">
+  <ellipse cx="170" cy="426" rx="112" ry="15" fill="#000" opacity=".35"/>
+  <rect x="72" y="28" width="196" height="66" rx="13" fill="url(#cap)"/>
+  <g stroke="#393939" stroke-width="3" opacity=".95"><path d="M84 36v50M98 36v50M112 36v50M126 36v50M140 36v50M154 36v50M168 36v50M182 36v50M196 36v50M210 36v50M224 36v50M238 36v50M252 36v50"/></g>
+  <rect x="76" y="88" width="188" height="12" rx="4" fill="#050505"/><path d="M90 98h160c19 0 35 16 35 35v245c0 25-20 45-45 45H100c-25 0-45-20-45-45V133c0-19 16-35 35-35z" fill="url(#body)"/>
+  <path d="M55 143h230v212H55z" fill="url(#label)"/>
+  <path d="M55 143h230v51H55z" fill="url(#accent)"/>
+  <path d="M55 143h230v51H55z" fill="url(#dots)"/>
+  <path d="M55 331h230v24H55z" fill="url(#accent)"/>
+  <path d="M55 317l230-24v38H55z" fill="#191919"/>
+  <path d="M170 151l23 12v25l-23 12-23-12v-25z" fill="#111" opacity=".96"/>
+  <text x="170" y="184" text-anchor="middle" fill="#5a8a62" font-family="Arial Black,Arial,sans-serif" font-size="30" font-weight="900">G</text>
+  <text x="170" y="225" text-anchor="middle" fill="#aaa49c" font-family="Arial,Helvetica,sans-serif" font-size="9" font-weight="700" letter-spacing="2.6">GRUNDKRAFT</text>
+  <text x="170" y="264" text-anchor="middle" fill="#f3efe7" font-family="Arial Narrow,Arial,Helvetica,sans-serif" font-size="31" font-weight="900" letter-spacing="-1.2">KRAFTRESERVE</text>
+  <text x="170" y="290" text-anchor="middle" fill="#83a889" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="800" letter-spacing="1">KREATIN MONOHYDRAT</text>
+  <line x1="102" y1="308" x2="238" y2="308" stroke="#456c4f" stroke-width="3"/>
+  <text x="170" y="345" text-anchor="middle" fill="#0b0b0b" font-family="Arial,Helvetica,sans-serif" font-size="10" font-weight="900" letter-spacing="1">GEMACHT FÜR MACHER.</text>
+  <path d="M90 98h160c19 0 35 16 35 35v245c0 25-20 45-45 45H100c-25 0-45-20-45-45V133c0-19 16-35 35-35z" fill="url(#shine)"/>
+</g></svg>
