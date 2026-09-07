@@ -1,0 +1,23 @@
+<section class="gk-section gk-custom-liquid">
+  <div class="gk-container">
+    {{ section.settings.custom_liquid }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Liquid",
+  "tag": "section",
+  "class": "section-custom-liquid",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Liquid-Code"
+    }
+  ],
+  "presets": [
+    { "name": "Custom Liquid" }
+  ]
+}
+{% endschema %}
