@@ -4,8 +4,7 @@
       {% if settings.logo != blank %}
         {{ settings.logo | image_url: width: settings.logo_width | image_tag: widths: '120,180,240,320', width: settings.logo_width, loading: 'eager', alt: shop.name }}
       {% else %}
-        <span class="gk-logo__mark">GK</span>
-        <span>GRUNDKRAFT</span>
+        <img class="gk-logo__fallback" src="{{ 'gk-logo.svg' | asset_url }}" width="184" height="33" loading="eager" alt="GRUNDKRAFT">
       {% endif %}
     </a>
 
@@ -15,15 +14,15 @@
           <a href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
       {% else %}
-        <a href="/collections/all">Shop</a>
-        <a href="/pages/unsere-idee">Unsere Idee</a>
-        <a href="/pages/fuer-betriebe">Für Betriebe</a>
-        <a href="/blogs/wissen">Wissen</a>
+        <a href="/pages/anwendungsbereiche">Anwendungsbereiche</a>
+        <a href="/collections/all">Produkte</a>
+        <a href="/pages/inhaltsstoffe">Inhaltsstoffe</a>
+        <a href="/pages/faq">FAQ</a>
       {% endif %}
     </nav>
 
     <div class="gk-header__actions">
-      <a class="gk-icon-btn gk-account" href="{{ routes.account_url }}" aria-label="{{ 'header.account' | t }}">◎</a>
+      <a class="gk-btn gk-btn--primary gk-header__cta" href="/collections/all">TAGWERK sichern</a>
       <a class="gk-icon-btn" href="{{ routes.cart_url }}" aria-label="{{ 'header.cart' | t }}">{{ cart.item_count }}</a>
       <button class="gk-icon-btn gk-mobile-toggle" type="button" data-mobile-toggle aria-expanded="false" aria-controls="GkMobileMenu" aria-label="{{ 'header.menu' | t }}">☰</button>
     </div>
@@ -36,10 +35,10 @@
           <a href="{{ link.url }}" style="font-weight:800;text-transform:uppercase">{{ link.title }}</a>
         {% endfor %}
       {% else %}
-        <a href="/collections/all">Shop</a>
-        <a href="/pages/unsere-idee">Unsere Idee</a>
-        <a href="/pages/fuer-betriebe">Für Betriebe</a>
-        <a href="/blogs/wissen">Wissen</a>
+        <a href="/pages/anwendungsbereiche">Anwendungsbereiche</a>
+        <a href="/collections/all">Produkte</a>
+        <a href="/pages/inhaltsstoffe">Inhaltsstoffe</a>
+        <a href="/pages/faq">FAQ</a>
       {% endif %}
     </div>
   </div>
