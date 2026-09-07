@@ -25,11 +25,20 @@
           if chosen_product == blank
             assign chosen_product = all_products[style]
           endif
+          if chosen_product == blank
+            for candidate in collections.all.products
+              assign candidate_title = candidate.title | downcase
+              if candidate_title contains style
+                assign chosen_product = candidate
+                break
+              endif
+            endfor
+          endif
+
           assign title = block.settings.title
           assign subtitle = block.settings.subtitle
           assign status = block.settings.status
           assign href = block.settings.link
-
           if chosen_product != blank
             if title == blank
               assign title = chosen_product.title
@@ -57,12 +66,7 @@
 
         <article class="gk-product-box gk-product-box--{{ style }}" {{ block.shopify_attributes }}>
           <div class="gk-product-box__badge" aria-hidden="true">i</div>
-          <a href="{{ href }}" aria-label="{{ title | escape }} ansehen">
-            <div class="gk-product-box__visual">
-              <img src="{{ tub_asset | asset_url }}" width="340" height="460" loading="lazy" alt="{{ title | escape }} Produktbehälter">
-            </div>
-          </a>
-
+          <a href="{{ href }}" aria-label="{{ title | escape }} ansehen"><div class="gk-product-box__visual"><img src="{{ tub_asset | asset_url }}" width="340" height="460" loading="lazy" alt="{{ title | escape }} Produktbehälter"></div></a>
           <div class="gk-product-box__meta">
             <h3 class="gk-product-box__title"><a href="{{ href }}">{{ title | escape }}</a></h3>
             {% if subtitle != blank %}<p class="gk-product-box__subtitle">{{ subtitle | escape }}</p>{% endif %}
@@ -97,38 +101,27 @@
     { "type": "text", "id": "heading", "label": "Überschrift", "default": "Dein Werkzeugkasten" },
     { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Durchdachte Bausteine für unterschiedliche Anforderungen im Alltag.</p>" }
   ],
-  "blocks": [
-    {
-      "type": "product_box",
-      "name": "Produktbox",
-      "settings": [
-        {
-          "type": "select",
-          "id": "style",
-          "label": "Behälter-Stil / automatischer Produkt-Handle",
-          "default": "tagwerk",
-          "options": [
-            { "value": "tagwerk", "label": "TAGWERK Orange" },
-            { "value": "standfest", "label": "STANDFEST Blau" },
-            { "value": "kraftreserve", "label": "KRAFTRESERVE Grün" }
-          ]
-        },
-        { "type": "product", "id": "product", "label": "Shopify-Produkt (optional)" },
-        { "type": "text", "id": "title", "label": "Produktname" },
-        { "type": "text", "id": "subtitle", "label": "Unterzeile" },
-        { "type": "text", "id": "status", "label": "Status/Platzhalter", "default": "In Vorbereitung" },
-        { "type": "url", "id": "link", "label": "Link (optional)" }
-      ]
-    }
-  ],
-  "max_blocks": 9,
-  "presets": [{
-    "name": "Dein Werkzeugkasten",
-    "blocks": [
-      { "type": "product_box", "settings": { "style": "tagwerk", "title": "TAGWERK", "subtitle": "Yuzu-Zitrone" } },
-      { "type": "product_box", "settings": { "style": "standfest", "title": "STANDFEST", "subtitle": "Daily Support" } },
-      { "type": "product_box", "settings": { "style": "kraftreserve", "title": "KRAFTRESERVE", "subtitle": "Kreatin Monohydrat" } }
+  "blocks": [{
+    "type": "product_box",
+    "name": "Produktbox",
+    "settings": [
+      { "type": "select", "id": "style", "label": "Behälter-Stil", "default": "tagwerk", "options": [
+        { "value": "tagwerk", "label": "TAGWERK Orange" },
+        { "value": "standfest", "label": "STANDFEST Blau" },
+        { "value": "kraftreserve", "label": "KRAFTRESERVE Grün" }
+      ] },
+      { "type": "product", "id": "product", "label": "Shopify-Produkt (optional)" },
+      { "type": "text", "id": "title", "label": "Produktname" },
+      { "type": "text", "id": "subtitle", "label": "Unterzeile" },
+      { "type": "text", "id": "status", "label": "Status/Platzhalter", "default": "In Vorbereitung" },
+      { "type": "url", "id": "link", "label": "Link (optional)" }
     ]
-  }]
+  }],
+  "max_blocks": 9,
+  "presets": [{ "name": "Dein Werkzeugkasten", "blocks": [
+    { "type": "product_box", "settings": { "style": "tagwerk", "title": "TAGWERK", "subtitle": "Yuzu-Zitrone" } },
+    { "type": "product_box", "settings": { "style": "standfest", "title": "STANDFEST", "subtitle": "Daily Support" } },
+    { "type": "product_box", "settings": { "style": "kraftreserve", "title": "KRAFTRESERVE", "subtitle": "Kreatin Monohydrat" } }
+  ] }]
 }
 {% endschema %}
