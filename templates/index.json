@@ -56,6 +56,36 @@
       },
       "block_order": ["tagwerk", "standfest", "kraftreserve"]
     },
+    "story": {
+      "type": "gk-story",
+      "settings": {
+        "eyebrow": "Unsere Idee",
+        "heading": "Entstanden aus echter Arbeit.",
+        "text": "<p>GRUNDKRAFT ist aus einem einfachen Gedanken entstanden: Wer jeden Tag körperlich arbeitet, braucht keine Marke, die ihm noch mehr Leistung predigt. Sondern Produkte, die sich sinnvoll in einen echten Alltag einfügen.</p><p>Deshalb denken wir nicht in Workout-Minuten, sondern in langen Tagen, Wetter, Fahrten, Familie, Arbeit und dem, was danach noch übrig ist.</p>",
+        "button_label": "Produkte ansehen"
+      },
+      "blocks": {
+        "story_1": { "type": "fact", "settings": { "heading": "Alltag vor Inszenierung", "text": "Produkte müssen in echte Routinen passen, nicht nur auf eine Werbefläche." } },
+        "story_2": { "type": "fact", "settings": { "heading": "Klare Aufgabe", "text": "Jedes Produkt bekommt einen nachvollziehbaren Platz im Werkzeugkasten." } },
+        "story_3": { "type": "fact", "settings": { "heading": "Transparenz statt Nebel", "text": "Was noch nicht final ist, wird auch nicht als fertig verkauft." } }
+      },
+      "block_order": ["story_1", "story_2", "story_3"]
+    },
+    "business": {
+      "type": "gk-business",
+      "settings": {
+        "eyebrow": "Für Betriebe",
+        "heading": "Versorgung als Teil eines guten Arbeitstages.",
+        "text": "<p>GRUNDKRAFT soll auch für Betriebe funktionieren, die ihren Teams eine einfache und nachvollziehbare Versorgungslösung anbieten möchten. Ohne Fitnesssprech, ohne komplizierte Routinen.</p>",
+        "button_label": "Interesse vormerken"
+      },
+      "blocks": {
+        "business_1": { "type": "benefit", "settings": { "heading": "Einfach integrierbar", "text": "Gedacht für Pausenraum, Fahrzeug, Lager oder Baustelle." } },
+        "business_2": { "type": "benefit", "settings": { "heading": "Klare Produktlogik", "text": "Teams sollen verstehen, welches Produkt wofür gedacht ist." } },
+        "business_3": { "type": "benefit", "settings": { "heading": "Skalierbar geplant", "text": "B2B-Pakete und wiederkehrende Versorgung können später darauf aufbauen." } }
+      },
+      "block_order": ["business_1", "business_2", "business_3"]
+    },
     "ingredients": {
       "type": "gk-ingredients",
       "settings": {
@@ -89,5 +119,5 @@
       "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
     }
   },
-  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "ingredients", "faq"]
+  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "story", "business", "ingredients", "faq"]
 }
