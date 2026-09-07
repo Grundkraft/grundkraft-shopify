@@ -13,20 +13,30 @@
         <p class="gk-eyebrow">Dein Werkzeugkasten</p>
         <div class="gk-collection__count">{{ collection.products_count }} Produkt{% if collection.products_count != 1 %}e{% endif %}</div>
       </div>
+
+      {% if collection.sort_options.size > 1 %}
+        <form class="gk-sort" method="get" action="{{ collection.url }}">
+          <label class="gk-field-label" for="SortBy">Sortieren</label>
+          {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+          <select id="SortBy" class="gk-select" name="sort_by" onchange="this.form.submit()">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      {% endif %}
     </div>
 
     {% paginate collection.products by 24 %}
       {% if collection.products_count > 0 %}
         <div class="gk-product-grid">
-          {% for product in collection.products %}
-            {% render 'gk-product-card', product: product %}
-          {% endfor %}
+          {% for product in collection.products %}{% render 'gk-product-card', product: product %}{% endfor %}
         </div>
 
         {% if paginate.pages > 1 %}
-          <nav class="gk-pagination" aria-label="Seitennavigation" style="display:flex;justify-content:center;gap:10px;margin-top:32px">
+          <nav class="gk-pagination" aria-label="Seitennavigation">
             {% if paginate.previous %}<a class="gk-btn gk-btn--secondary" href="{{ paginate.previous.url }}">Zurück</a>{% endif %}
-            <span class="gk-copy" style="align-self:center">{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            <span>{{ paginate.current_page }} / {{ paginate.pages }}</span>
             {% if paginate.next %}<a class="gk-btn gk-btn--secondary" href="{{ paginate.next.url }}">Weiter</a>{% endif %}
           </nav>
         {% endif %}
@@ -35,6 +45,7 @@
           <p class="gk-eyebrow">Noch leer</p>
           <h2>Hier kommen die Produkte rein.</h2>
           <p class="gk-copy">Sobald Shopify-Produkte dieser Kollektion zugeordnet sind, erscheinen sie hier automatisch im GRUNDKRAFT-Design.</p>
+          <a class="gk-btn gk-btn--secondary" href="{{ routes.root_url }}">Zur Startseite</a>
         </div>
       {% endif %}
     {% endpaginate %}
@@ -42,10 +53,5 @@
 </section>
 
 {% schema %}
-{
-  "name": "GRUNDKRAFT Kollektion",
-  "tag": "section",
-  "class": "section-main-collection",
-  "settings": []
-}
+{"name":"GRUNDKRAFT Kollektion","tag":"section","class":"section-main-collection","settings":[]}
 {% endschema %}
