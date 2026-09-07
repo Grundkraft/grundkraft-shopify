@@ -1,0 +1,140 @@
+{% liquid
+  assign heading = section.settings.heading
+  assign intro = section.settings.text
+%}
+
+<section class="gk-section gk-toolbox" data-gk-toolbox>
+  <div class="gk-container">
+    <div class="gk-toolbox__head">
+      <div class="gk-toolbox__intro">
+        {% if section.settings.eyebrow != blank %}
+          <p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {% endif %}
+        {% if heading != blank %}
+          <h2 class="gk-heading gk-heading--lg">{{ heading | escape }}</h2>
+        {% endif %}
+        {% if intro != blank %}
+          <div class="gk-copy">{{ intro }}</div>
+        {% endif %}
+      </div>
+
+      <div class="gk-toolbox__controls" aria-label="Produkte durchblättern">
+        <button class="gk-toolbox__arrow" type="button" data-toolbox-prev aria-label="Vorherige Produkte">‹</button>
+        <button class="gk-toolbox__arrow" type="button" data-toolbox-next aria-label="Nächste Produkte">›</button>
+      </div>
+    </div>
+
+    <div class="gk-toolbox__track" data-toolbox-track>
+      {% for block in section.blocks %}
+        {% liquid
+          assign style = block.settings.style
+          assign chosen_product = block.settings.product
+          assign title = block.settings.title
+          assign subtitle = block.settings.subtitle
+          assign status = block.settings.status
+          assign href = block.settings.link
+          if chosen_product != blank
+            if title == blank
+              assign title = chosen_product.title
+            endif
+            if href == blank
+              assign href = chosen_product.url
+            endif
+          endif
+          if title == blank
+            assign title = style | upcase
+          endif
+
+          case style
+            when 'standfest'
+              assign tub_asset = 'product-tub-standfest.svg'
+            when 'kraftreserve'
+              assign tub_asset = 'product-tub-kraftreserve.svg'
+            else
+              assign tub_asset = 'product-tub-tagwerk.svg'
+          endcase
+        %}
+
+        <article class="gk-product-box gk-product-box--{{ style }}" {{ block.shopify_attributes }}>
+          <div class="gk-product-box__badge" aria-hidden="true">i</div>
+
+          {% if href != blank %}<a href="{{ href }}" aria-label="{{ title | escape }} ansehen">{% endif %}
+            <div class="gk-product-box__visual">
+              <img src="{{ tub_asset | asset_url }}" width="340" height="460" loading="lazy" alt="{{ title | escape }} Produktbehälter">
+            </div>
+          {% if href != blank %}</a>{% endif %}
+
+          <div class="gk-product-box__meta">
+            <h3 class="gk-product-box__title">{{ title | escape }}</h3>
+            {% if subtitle != blank %}
+              <p class="gk-product-box__subtitle">{{ subtitle | escape }}</p>
+            {% endif %}
+
+            <div class="gk-product-box__bottom">
+              <div class="gk-product-box__status">
+                {% if chosen_product != blank and chosen_product.available %}
+                  {{ chosen_product.price | money }}
+                {% elsif status != blank %}
+                  {{ status | escape }}
+                {% else %}
+                  In Vorbereitung
+                {% endif %}
+              </div>
+              {% if href != blank %}
+                <a class="gk-product-box__cta" href="{{ href }}">Ansehen <span>→</span></a>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dein Werkzeugkasten",
+  "tag": "section",
+  "class": "section-gk-toolbox",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Produkte" },
+    { "type": "text", "id": "heading", "label": "Überschrift", "default": "Dein Werkzeugkasten" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Durchdachte Bausteine für unterschiedliche Anforderungen im Alltag.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "product_box",
+      "name": "Produktbox",
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Behälter-Stil",
+          "default": "tagwerk",
+          "options": [
+            { "value": "tagwerk", "label": "TAGWERK Orange" },
+            { "value": "standfest", "label": "STANDFEST Blau" },
+            { "value": "kraftreserve", "label": "KRAFTRESERVE Grün" }
+          ]
+        },
+        { "type": "product", "id": "product", "label": "Shopify-Produkt (optional)" },
+        { "type": "text", "id": "title", "label": "Produktname" },
+        { "type": "text", "id": "subtitle", "label": "Unterzeile" },
+        { "type": "text", "id": "status", "label": "Status/Platzhalter", "default": "In Vorbereitung" },
+        { "type": "url", "id": "link", "label": "Link (optional)" }
+      ]
+    }
+  ],
+  "max_blocks": 9,
+  "presets": [
+    {
+      "name": "Dein Werkzeugkasten",
+      "blocks": [
+        { "type": "product_box", "settings": { "style": "tagwerk", "title": "TAGWERK", "subtitle": "Yuzu-Zitrone" } },
+        { "type": "product_box", "settings": { "style": "standfest", "title": "STANDFEST", "subtitle": "Daily Support" } },
+        { "type": "product_box", "settings": { "style": "kraftreserve", "title": "KRAFTRESERVE", "subtitle": "Kreatin Monohydrat" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
