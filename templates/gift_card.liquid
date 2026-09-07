@@ -1,0 +1,59 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#111214">
+    <title>Geschenkkarte · {{ shop.name }}</title>
+    {{ 'vendor/qrcode.js' | shopify_asset_url | script_tag }}
+    {{ content_for_header }}
+    <style>
+      *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px;background:#555650;background-image:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1.2px);background-size:16px 16px;color:#f3efe7;font-family:Arial,sans-serif}.card{width:min(760px,100%);overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:linear-gradient(145deg,#343535,#1d1e1f 58%,#101112);box-shadow:0 28px 80px rgba(0,0,0,.38)}.top{height:12px;background:#f35c13}.inner{padding:38px}.brand{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand strong{font-size:1.2rem;letter-spacing:.04em}.mark{display:grid;place-items:center;width:38px;height:38px;border:2px solid #f35c13;font-weight:900}.eyebrow{margin:42px 0 8px;color:#f35c13;font-size:.72rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.value{margin:0;font-size:clamp(3.2rem,10vw,6.5rem);line-height:.9;font-weight:900;letter-spacing:-.05em}.sub{margin:10px 0 28px;color:#aaa59d}.grid{display:grid;grid-template-columns:1fr 160px;gap:30px;align-items:end}.code{padding:18px;border:1px solid rgba(255,255,255,.14);border-radius:6px;background:#101112}.code small{display:block;margin-bottom:8px;color:#928d86;text-transform:uppercase;letter-spacing:.12em}.code strong{display:block;font-family:monospace;font-size:clamp(1.15rem,3vw,1.65rem);letter-spacing:.12em;word-break:break-all}.qr{display:grid;place-items:center;min-height:150px;padding:15px;border-radius:6px;background:#fff}.meta{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:22px;color:#9d9890;font-size:.78rem}.message{margin:22px 0 0;padding:15px;border-left:3px solid #f35c13;background:rgba(243,92,19,.08);line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.actions a,.actions button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 17px;border:1px solid rgba(255,255,255,.15);border-radius:4px;background:#171819;color:#fff;font-weight:800;text-decoration:none;cursor:pointer}.actions a.primary{border-color:#f35c13;background:#f35c13}.wallet img{display:block;width:120px;height:auto}.status{padding:10px 12px;border-radius:4px;background:rgba(255,255,255,.05)}@media(max-width:620px){body{padding:0}.card{min-height:100vh;border-radius:0;border:0}.inner{padding:28px 20px}.grid{grid-template-columns:1fr}.qr{width:150px}.brand{align-items:flex-start}}
+      @media print{body{background:#fff;color:#000;padding:0}.card{box-shadow:none;border:1px solid #aaa}.top{background:#000}.actions{display:none}.qr{border:1px solid #ddd}}
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="top"></div>
+      <div class="inner">
+        <div class="brand"><strong>{{ shop.name }}</strong><span class="mark">G</span></div>
+        <p class="eyebrow">Geschenkkarte</p>
+        <h1 class="value">{{ gift_card.balance | money }}</h1>
+        <p class="sub">Für den GRUNDKRAFT Werkzeugkasten.</p>
+
+        <div class="grid">
+          <div class="code">
+            <small>Code</small>
+            <strong>{{ gift_card.code }}</strong>
+          </div>
+          <div id="qr-code" class="qr" aria-label="QR-Code der Geschenkkarte"></div>
+        </div>
+
+        <div class="meta">
+          <span>Ursprünglicher Wert: {{ gift_card.initial_value | money }}</span>
+          {% if gift_card.expires_on %}<span>Gültig bis: {{ gift_card.expires_on | date: '%d.%m.%Y' }}</span>{% else %}<span>Kein Ablaufdatum hinterlegt</span>{% endif %}
+          {% if gift_card.expired %}<span class="status">Abgelaufen</span>{% elsif gift_card.enabled == false %}<span class="status">Deaktiviert</span>{% endif %}
+        </div>
+
+        {% if gift_card.message != blank %}<div class="message">{{ gift_card.message }}</div>{% endif %}
+
+        <div class="actions">
+          <a class="primary" href="{{ shop.url }}">Zum Shop</a>
+          <button type="button" onclick="window.print()">Drucken</button>
+          {% if gift_card.pass_url %}
+            <a class="wallet" href="{{ gift_card.pass_url }}" aria-label="Zu Apple Wallet hinzufügen"><img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="Zu Apple Wallet hinzufügen"></a>
+          {% endif %}
+        </div>
+      </div>
+    </main>
+
+    <script>
+      new QRCode(document.getElementById('qr-code'), {
+        text: {{ gift_card.qr_identifier | json }},
+        width: 120,
+        height: 120
+      });
+    </script>
+  </body>
+</html>
