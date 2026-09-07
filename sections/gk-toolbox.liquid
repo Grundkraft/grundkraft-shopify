@@ -41,6 +41,9 @@
               assign href = chosen_product.url
             endif
           endif
+          if href == blank
+            assign href = routes.all_products_collection_url
+          endif
           if title == blank
             assign title = style | upcase
           endif
@@ -58,11 +61,11 @@
         <article class="gk-product-box gk-product-box--{{ style }}" {{ block.shopify_attributes }}>
           <div class="gk-product-box__badge" aria-hidden="true">i</div>
 
-          {% if href != blank %}<a href="{{ href }}" aria-label="{{ title | escape }} ansehen">{% endif %}
+          <a href="{{ href }}" aria-label="{{ title | escape }} ansehen">
             <div class="gk-product-box__visual">
               <img src="{{ tub_asset | asset_url }}" width="340" height="460" loading="lazy" alt="{{ title | escape }} Produktbehälter">
             </div>
-          {% if href != blank %}</a>{% endif %}
+          </a>
 
           <div class="gk-product-box__meta">
             <h3 class="gk-product-box__title">{{ title | escape }}</h3>
@@ -80,9 +83,7 @@
                   In Vorbereitung
                 {% endif %}
               </div>
-              {% if href != blank %}
-                <a class="gk-product-box__cta" href="{{ href }}">Ansehen <span>→</span></a>
-              {% endif %}
+              <a class="gk-product-box__cta" href="{{ href }}">Ansehen <span>→</span></a>
             </div>
           </div>
         </article>
