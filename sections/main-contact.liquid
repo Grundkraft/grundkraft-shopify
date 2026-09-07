@@ -1,0 +1,74 @@
+<section class="gk-commerce-hero">
+  <div class="gk-container gk-commerce-hero__inner">
+    <p class="gk-eyebrow">Kontakt</p>
+    <h1>{{ page.title | default: 'Sprich mit uns.' }}</h1>
+    {% if page.content != blank %}<div class="gk-copy">{{ page.content }}</div>{% else %}<div class="gk-copy"><p>Frage zum Sortiment, Interesse als Betrieb oder etwas, das wir klären sollen? Schreib uns direkt.</p></div>{% endif %}
+  </div>
+</section>
+
+<section class="gk-contact">
+  <div class="gk-container gk-contact__grid">
+    <aside class="gk-contact__aside">
+      <p class="gk-eyebrow">GRUNDKRAFT</p>
+      <h2>Kein Ticketsystem-Gefühl.</h2>
+      <p class="gk-copy">Deine Nachricht landet über das native Shopify-Kontaktformular beim im Shop hinterlegten Empfänger.</p>
+      <div class="gk-contact__facts">
+        <div><strong>Produktfragen</strong><span>Sortiment, Anwendung und Verfügbarkeit</span></div>
+        <div><strong>Für Betriebe</strong><span>B2B-Interesse und Teamversorgung</span></div>
+        <div><strong>Allgemein</strong><span>Alles, was nicht in eine Schublade passt</span></div>
+      </div>
+    </aside>
+
+    <div class="gk-contact__formwrap">
+      {% form 'contact', class: 'gk-contact-form' %}
+        {% if form.posted_successfully? %}
+          <div class="gk-form-success" role="status"><strong>Nachricht ist raus.</strong><span>Danke. Wir melden uns über die angegebene E-Mail-Adresse.</span></div>
+        {% endif %}
+        {% if form.errors %}<div class="gk-form-error" role="alert">{{ form.errors | default_errors }}</div>{% endif %}
+
+        <div class="gk-contact-form__row">
+          <div>
+            <label class="gk-field-label" for="ContactName">Name</label>
+            <input id="ContactName" class="gk-input" type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" autocomplete="name">
+          </div>
+          <div>
+            <label class="gk-field-label" for="ContactCompany">Unternehmen</label>
+            <input id="ContactCompany" class="gk-input" type="text" name="contact[company]" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="gk-contact-form__row">
+          <div>
+            <label class="gk-field-label" for="ContactEmail">E-Mail *</label>
+            <input id="ContactEmail" class="gk-input" type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% endif %}" autocomplete="email" required aria-required="true">
+          </div>
+          <div>
+            <label class="gk-field-label" for="ContactPhone">Telefon</label>
+            <input id="ContactPhone" class="gk-input" type="tel" name="contact[phone]" autocomplete="tel">
+          </div>
+        </div>
+
+        <div>
+          <label class="gk-field-label" for="ContactTopic">Thema</label>
+          <select id="ContactTopic" class="gk-select" name="contact[topic]">
+            <option>Allgemeine Frage</option>
+            <option>Produkt / Bestellung</option>
+            <option>Für Betriebe / B2B</option>
+            <option>Presse / Kooperation</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="gk-field-label" for="ContactBody">Nachricht *</label>
+          <textarea id="ContactBody" class="gk-textarea" name="contact[body]" rows="7" required aria-required="true">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+
+        <button class="gk-btn gk-btn--primary" type="submit">Nachricht senden</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{"name":"GRUNDKRAFT Kontakt","tag":"section","class":"section-main-contact","settings":[]}
+{% endschema %}
