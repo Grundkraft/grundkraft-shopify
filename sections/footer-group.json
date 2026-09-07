@@ -1,0 +1,14 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "intro": "Funktionale Versorgung für Menschen, die jeden Tag körperlich leisten."
+      },
+      "blocks": {}
+    }
+  },
+  "order": ["footer"]
+}
