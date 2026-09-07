@@ -1,5 +1,14 @@
 {% liquid
   assign hero_product = all_products['tagwerk']
+  if hero_product == blank
+    for candidate in collections.all.products
+      assign candidate_title = candidate.title | downcase
+      if candidate_title contains 'tagwerk'
+        assign hero_product = candidate
+        break
+      endif
+    endfor
+  endif
   assign primary_url = section.settings.primary_link
   if primary_url == blank and hero_product != blank
     assign primary_url = hero_product.url
@@ -11,24 +20,17 @@
 
 <section class="gk-hero gk-grain{% unless section.settings.use_custom_image %} gk-hero--master{% endunless %}">
   <div class="gk-hero__backdrop" aria-hidden="true"></div>
-
   <div class="gk-container gk-hero__grid">
     <div class="gk-hero__content">
       {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow }}</p>{% endif %}
       <h1 class="gk-heading gk-heading--xl">{{ section.settings.heading }}</h1>
       {% if section.settings.claim != blank %}<div class="gk-hero__claim">{{ section.settings.claim }}</div>{% endif %}
       {% if section.settings.text != blank %}<div class="gk-copy gk-hero__copy">{{ section.settings.text }}</div>{% endif %}
-
       <div class="gk-btn-row">
         {% if section.settings.primary_label != blank %}<a class="gk-btn gk-btn--primary" href="{{ primary_url }}">{{ section.settings.primary_label }}</a>{% endif %}
         {% if section.settings.secondary_label != blank %}<a class="gk-btn gk-btn--secondary" href="{{ secondary_url }}">{{ section.settings.secondary_label }}</a>{% endif %}
       </div>
-
-      <div class="gk-hero__micro" aria-label="GRUNDKRAFT Prinzipien">
-        <span>Alltag statt Hype</span>
-        <span>Klare Routinen</span>
-        <span>Gemacht für Macher</span>
-      </div>
+      <div class="gk-hero__micro" aria-label="GRUNDKRAFT Prinzipien"><span>Alltag statt Hype</span><span>Klare Routinen</span><span>Gemacht für Macher</span></div>
     </div>
 
     <div class="gk-hero__visual">
