@@ -1,0 +1,41 @@
+<section class="gk-commerce-hero">
+  <div class="gk-container gk-commerce-hero__inner">
+    <p class="gk-eyebrow">Sortiment</p>
+    <h1>Alle Produktwelten.</h1>
+    <div class="gk-copy"><p>Kollektionen und Produktwelten werden hier automatisch aus Shopify übernommen.</p></div>
+  </div>
+</section>
+
+<section class="gk-collection">
+  <div class="gk-container">
+    {% if collections.size > 0 %}
+      <div class="gk-product-grid">
+        {% for collection in collections %}
+          {% if collection.handle != 'frontpage' %}
+            <article class="gk-product-card">
+              <a href="{{ collection.url }}">
+                <div class="gk-product-card__media">
+                  {% if collection.featured_image %}
+                    {{ collection.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: collection.title }}
+                  {% else %}
+                    <img src="{{ 'gk-metal-g.svg' | asset_url }}" width="300" height="300" loading="lazy" alt="">
+                  {% endif %}
+                </div>
+                <div class="gk-product-card__body">
+                  <h2 class="gk-product-card__title">{{ collection.title }}</h2>
+                  <div class="gk-product-card__meta">{{ collection.products_count }} Produkt{% if collection.products_count != 1 %}e{% endif %}</div>
+                </div>
+              </a>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="gk-empty-state"><h2>Noch keine Kollektionen.</h2></div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{"name":"GRUNDKRAFT Kollektionen","tag":"section","class":"section-list-collections","settings":[]}
+{% endschema %}
