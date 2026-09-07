@@ -40,7 +40,7 @@
             <a href="{{ routes.root_url }}#unsere-idee">Unsere Idee</a>
             <a href="{{ routes.root_url }}#fuer-betriebe">Für Betriebe</a>
             <a href="{{ routes.root_url }}#die-macher">Die Macher</a>
-            {% if blogs.size > 0 %}{% for blog_item in blogs limit: 1 %}<a href="{{ blog_item.url }}">Wissen</a>{% endfor %}{% endif %}
+            <a href="{{ routes.search_url }}">Suche</a>
           </div>
         </div>
         <div class="gk-footer__column">
