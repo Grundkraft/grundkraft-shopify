@@ -50,36 +50,44 @@
         "text": "<p>Klare Produkte für unterschiedliche Aufgaben. Eine gemeinsame Designsprache.</p>"
       },
       "blocks": {
-        "tagwerk": {
-          "type": "product_box",
-          "settings": {
-            "style": "tagwerk",
-            "title": "TAGWERK",
-            "subtitle": "Yuzu-Zitrone",
-            "status": "In Vorbereitung"
-          }
-        },
-        "standfest": {
-          "type": "product_box",
-          "settings": {
-            "style": "standfest",
-            "title": "STANDFEST",
-            "subtitle": "Daily Support",
-            "status": "In Vorbereitung"
-          }
-        },
-        "kraftreserve": {
-          "type": "product_box",
-          "settings": {
-            "style": "kraftreserve",
-            "title": "KRAFTRESERVE",
-            "subtitle": "Kreatin Monohydrat",
-            "status": "In Vorbereitung"
-          }
-        }
+        "tagwerk": { "type": "product_box", "settings": { "style": "tagwerk", "title": "TAGWERK", "subtitle": "Yuzu-Zitrone", "status": "In Vorbereitung" } },
+        "standfest": { "type": "product_box", "settings": { "style": "standfest", "title": "STANDFEST", "subtitle": "Daily Support", "status": "In Vorbereitung" } },
+        "kraftreserve": { "type": "product_box", "settings": { "style": "kraftreserve", "title": "KRAFTRESERVE", "subtitle": "Kreatin Monohydrat", "status": "In Vorbereitung" } }
       },
       "block_order": ["tagwerk", "standfest", "kraftreserve"]
+    },
+    "ingredients": {
+      "type": "gk-ingredients",
+      "settings": {
+        "eyebrow": "Klare Funktion",
+        "heading": "Was drin ist, soll einen Zweck haben.",
+        "text": "<p>GRUNDKRAFT setzt auf nachvollziehbare Produktkonzepte statt Zutatenlisten als Dekoration. Die finalen Rezepturen werden vor Verkaufsstart verbindlich festgelegt und transparent ausgewiesen.</p>",
+        "strip_heading": "Keine Nebelmaschine.",
+        "strip_text": "Mengen, Anwendung und Kennzeichnung werden bei jedem fertigen Produkt klar dargestellt."
+      },
+      "blocks": {
+        "ingredient_1": { "type": "ingredient_world", "settings": { "heading": "Flüssigkeit & Elektrolyte", "text": "Für Produkte, die rund um lange, warme oder körperlich fordernde Tage gedacht sind.", "note": "Produktabhängig" } },
+        "ingredient_2": { "type": "ingredient_world", "settings": { "heading": "Energie", "text": "Wo Energie eine Funktion erfüllt, behandeln wir sie nicht automatisch wie einen Fehler.", "note": "Je nach Produktkonzept" } },
+        "ingredient_3": { "type": "ingredient_world", "settings": { "heading": "Kraft & Reserve", "text": "Gezielte Ergänzungen bekommen einen klaren Platz statt eines überladenen Alles-in-einem-Prinzips.", "note": "Zum Beispiel KRAFTRESERVE" } },
+        "ingredient_4": { "type": "ingredient_world", "settings": { "heading": "Basisversorgung", "text": "Produkte für die tägliche Routine werden getrennt von akuten Arbeitstag-Lösungen gedacht.", "note": "In Entwicklung" } }
+      },
+      "block_order": ["ingredient_1", "ingredient_2", "ingredient_3", "ingredient_4"]
+    },
+    "faq": {
+      "type": "gk-faq",
+      "settings": {
+        "eyebrow": "Kurz geklärt",
+        "heading": "Fragen, die man vor dem Kauf stellen darf.",
+        "text": "<p>Keine Hochglanz-Antworten um jeden Preis. Solange Produkte noch entwickelt werden, sagen wir genau das.</p>"
+      },
+      "blocks": {
+        "faq_1": { "type": "faq", "settings": { "question": "Für wen ist GRUNDKRAFT gedacht?", "answer": "<p>Für Menschen, deren Alltag körperlich fordert: im Beruf, zu Hause und darüber hinaus. Die Marke ist nicht als klassische Fitness- oder Bodybuilding-Marke aufgebaut.</p>" } },
+        "faq_2": { "type": "faq", "settings": { "question": "Sind die Rezepturen bereits final?", "answer": "<p>Noch nicht bei allen Produkten. Wo Rezeptur, Dosierung oder Kennzeichnung nicht final bestätigt sind, wird das im Shop als Entwicklung oder Vorbereitung gekennzeichnet.</p>" } },
+        "faq_3": { "type": "faq", "settings": { "question": "Warum gibt es Produkte mit unterschiedlichen Aufgaben?", "answer": "<p>Weil ein langer Arbeitstag, eine tägliche Basisroutine und gezielte Ergänzungen unterschiedliche Anforderungen haben. GRUNDKRAFT setzt deshalb auf einen Werkzeugkasten statt auf ein einziges Alles-in-einem-Produkt.</p>" } },
+        "faq_4": { "type": "faq", "settings": { "question": "Wann kann ich die Produkte kaufen?", "answer": "<p>Ein verbindlicher Verkaufsstart wird erst genannt, wenn Produkt, Kennzeichnung und Lieferfähigkeit tatsächlich stehen.</p>" } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
     }
   },
-  "order": ["hero", "pillars", "tagwerk_feature", "toolbox"]
+  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "ingredients", "faq"]
 }
