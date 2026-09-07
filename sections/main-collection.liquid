@@ -1,0 +1,51 @@
+<section class="gk-commerce-hero">
+  <div class="gk-container gk-commerce-hero__inner">
+    <p class="gk-eyebrow">GRUNDKRAFT Sortiment</p>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}<div class="gk-copy">{{ collection.description }}</div>{% endif %}
+  </div>
+</section>
+
+<section class="gk-collection">
+  <div class="gk-container">
+    <div class="gk-collection__bar">
+      <div>
+        <p class="gk-eyebrow">Dein Werkzeugkasten</p>
+        <div class="gk-collection__count">{{ collection.products_count }} Produkt{% if collection.products_count != 1 %}e{% endif %}</div>
+      </div>
+    </div>
+
+    {% paginate collection.products by 24 %}
+      {% if collection.products_count > 0 %}
+        <div class="gk-product-grid">
+          {% for product in collection.products %}
+            {% render 'gk-product-card', product: product %}
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <nav class="gk-pagination" aria-label="Seitennavigation" style="display:flex;justify-content:center;gap:10px;margin-top:32px">
+            {% if paginate.previous %}<a class="gk-btn gk-btn--secondary" href="{{ paginate.previous.url }}">Zurück</a>{% endif %}
+            <span class="gk-copy" style="align-self:center">{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            {% if paginate.next %}<a class="gk-btn gk-btn--secondary" href="{{ paginate.next.url }}">Weiter</a>{% endif %}
+          </nav>
+        {% endif %}
+      {% else %}
+        <div class="gk-empty-state">
+          <p class="gk-eyebrow">Noch leer</p>
+          <h2>Hier kommen die Produkte rein.</h2>
+          <p class="gk-copy">Sobald Shopify-Produkte dieser Kollektion zugeordnet sind, erscheinen sie hier automatisch im GRUNDKRAFT-Design.</p>
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GRUNDKRAFT Kollektion",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": []
+}
+{% endschema %}
