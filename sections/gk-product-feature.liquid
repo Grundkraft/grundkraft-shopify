@@ -38,8 +38,8 @@
           </div>
           {% if chosen_product != blank %}
             <a class="gk-btn gk-btn--primary" href="{{ chosen_product.url }}">Produkt ansehen</a>
-          {% elsif section.settings.link != blank %}
-            <a class="gk-btn gk-btn--primary" href="{{ section.settings.link }}">{{ section.settings.button_label | default: 'Mehr erfahren' }}</a>
+          {% else %}
+            <a class="gk-btn gk-btn--primary" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | default: 'Mehr erfahren' }}</a>
           {% endif %}
         </div>
       </div>
