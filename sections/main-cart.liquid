@@ -1,0 +1,65 @@
+<section class="gk-commerce-hero">
+  <div class="gk-container gk-commerce-hero__inner">
+    <p class="gk-eyebrow">Warenkorb</p>
+    <h1>Dein Werkzeugkasten.</h1>
+    <div class="gk-copy"><p>Alles drin, was du für deinen nächsten Schritt ausgewählt hast.</p></div>
+  </div>
+</section>
+
+<section class="gk-cart">
+  <div class="gk-container">
+    {% if cart.item_count > 0 %}
+      {% form 'cart', cart %}
+        <div class="gk-cart__grid">
+          <div class="gk-cart-items">
+            {% for item in cart.items %}
+              <article class="gk-cart-item">
+                <a class="gk-cart-item__media" href="{{ item.url }}">
+                  {% if item.image %}
+                    {{ item.image | image_url: width: 240 | image_tag: loading: 'lazy', alt: item.product.title }}
+                  {% endif %}
+                </a>
+                <div>
+                  <a class="gk-cart-item__title" href="{{ item.url }}">{{ item.product.title }}</a>
+                  {% unless item.product.has_only_default_variant %}<div class="gk-cart-item__variant">{{ item.variant.title }}</div>{% endunless %}
+                  <a class="gk-cart-remove" href="{{ item.url_to_remove }}">Entfernen</a>
+                </div>
+                <div class="gk-cart-item__qty">
+                  <label class="gk-field-label" for="updates_{{ item.key }}">Anzahl</label>
+                  <input id="updates_{{ item.key }}" class="gk-qty" type="number" name="updates[]" value="{{ item.quantity }}" min="0">
+                </div>
+                <div class="gk-cart-item__price">{{ item.final_line_price | money }}</div>
+              </article>
+            {% endfor %}
+          </div>
+
+          <aside class="gk-cart-summary">
+            <h2>Zusammenfassung</h2>
+            <div class="gk-cart-summary__line"><span>Zwischensumme</span><strong>{{ cart.total_price | money }}</strong></div>
+            {% if cart.cart_level_discount_applications.size > 0 %}
+              {% for discount in cart.cart_level_discount_applications %}
+                <div class="gk-cart-summary__line"><span>{{ discount.title }}</span><strong>-{{ discount.total_allocated_amount | money }}</strong></div>
+              {% endfor %}
+            {% endif %}
+            <label class="gk-field-label" for="CartNote" style="margin-top:16px">Notiz zur Bestellung</label>
+            <textarea id="CartNote" class="gk-cart-note" name="note">{{ cart.note }}</textarea>
+            <button class="gk-btn gk-btn--secondary" type="submit" name="update" style="width:100%;margin-bottom:10px">Warenkorb aktualisieren</button>
+            <button class="gk-checkout" type="submit" name="checkout">Zur Kasse</button>
+            <a class="gk-continue" href="{{ routes.all_products_collection_url }}">Weiter einkaufen</a>
+          </aside>
+        </div>
+      {% endform %}
+    {% else %}
+      <div class="gk-empty-state">
+        <p class="gk-eyebrow">Noch nichts drin</p>
+        <h2>Dein Warenkorb ist leer.</h2>
+        <p class="gk-copy">Schau in den Werkzeugkasten und wähle das aus, was zu deinem Alltag passt.</p>
+        <a class="gk-btn gk-btn--primary" href="{{ routes.all_products_collection_url }}">Produkte ansehen</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{"name":"GRUNDKRAFT Warenkorb","tag":"section","class":"section-main-cart","settings":[]}
+{% endschema %}
