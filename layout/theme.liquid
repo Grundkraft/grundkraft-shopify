@@ -19,18 +19,18 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {% if settings.type_header_font != blank %}
-      {{ settings.type_header_font | font_face: font_display: 'swap' }}
-    {% endif %}
-    {% if settings.type_body_font != blank %}
-      {{ settings.type_body_font | font_face: font_display: 'swap' }}
-    {% endif %}
-
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'brand-components.css' | asset_url | stylesheet_tag }}
     {{ 'toolbox.css' | asset_url | stylesheet_tag }}
 
     <style>
+      {% if settings.type_header_font != blank %}
+        {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      {% endif %}
+      {% if settings.type_body_font != blank %}
+        {{ settings.type_body_font | font_face: font_display: 'swap' }}
+      {% endif %}
+
       :root {
         --gk-bg: {{ settings.color_background }};
         --gk-surface: {{ settings.color_surface }};
