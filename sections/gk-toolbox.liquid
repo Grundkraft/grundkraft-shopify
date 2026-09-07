@@ -7,17 +7,10 @@
   <div class="gk-container">
     <div class="gk-toolbox__head">
       <div class="gk-toolbox__intro">
-        {% if section.settings.eyebrow != blank %}
-          <p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>
-        {% endif %}
-        {% if heading != blank %}
-          <h2 class="gk-heading gk-heading--lg">{{ heading | escape }}</h2>
-        {% endif %}
-        {% if intro != blank %}
-          <div class="gk-copy">{{ intro }}</div>
-        {% endif %}
+        {% if section.settings.eyebrow != blank %}<p class="gk-eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+        {% if heading != blank %}<h2 class="gk-heading gk-heading--lg">{{ heading | escape }}</h2>{% endif %}
+        {% if intro != blank %}<div class="gk-copy">{{ intro }}</div>{% endif %}
       </div>
-
       <div class="gk-toolbox__controls" aria-label="Produkte durchblättern">
         <button class="gk-toolbox__arrow" type="button" data-toolbox-prev aria-label="Vorherige Produkte">‹</button>
         <button class="gk-toolbox__arrow" type="button" data-toolbox-next aria-label="Nächste Produkte">›</button>
@@ -29,10 +22,14 @@
         {% liquid
           assign style = block.settings.style
           assign chosen_product = block.settings.product
+          if chosen_product == blank
+            assign chosen_product = all_products[style]
+          endif
           assign title = block.settings.title
           assign subtitle = block.settings.subtitle
           assign status = block.settings.status
           assign href = block.settings.link
+
           if chosen_product != blank
             if title == blank
               assign title = chosen_product.title
@@ -60,7 +57,6 @@
 
         <article class="gk-product-box gk-product-box--{{ style }}" {{ block.shopify_attributes }}>
           <div class="gk-product-box__badge" aria-hidden="true">i</div>
-
           <a href="{{ href }}" aria-label="{{ title | escape }} ansehen">
             <div class="gk-product-box__visual">
               <img src="{{ tub_asset | asset_url }}" width="340" height="460" loading="lazy" alt="{{ title | escape }} Produktbehälter">
@@ -68,15 +64,14 @@
           </a>
 
           <div class="gk-product-box__meta">
-            <h3 class="gk-product-box__title">{{ title | escape }}</h3>
-            {% if subtitle != blank %}
-              <p class="gk-product-box__subtitle">{{ subtitle | escape }}</p>
-            {% endif %}
-
+            <h3 class="gk-product-box__title"><a href="{{ href }}">{{ title | escape }}</a></h3>
+            {% if subtitle != blank %}<p class="gk-product-box__subtitle">{{ subtitle | escape }}</p>{% endif %}
             <div class="gk-product-box__bottom">
               <div class="gk-product-box__status">
                 {% if chosen_product != blank and chosen_product.available %}
-                  {{ chosen_product.price | money }}
+                  {% if chosen_product.price_varies %}ab {% endif %}{{ chosen_product.price | money }}
+                {% elsif chosen_product != blank %}
+                  Bald verfügbar
                 {% elsif status != blank %}
                   {{ status | escape }}
                 {% else %}
@@ -110,7 +105,7 @@
         {
           "type": "select",
           "id": "style",
-          "label": "Behälter-Stil",
+          "label": "Behälter-Stil / automatischer Produkt-Handle",
           "default": "tagwerk",
           "options": [
             { "value": "tagwerk", "label": "TAGWERK Orange" },
@@ -127,15 +122,13 @@
     }
   ],
   "max_blocks": 9,
-  "presets": [
-    {
-      "name": "Dein Werkzeugkasten",
-      "blocks": [
-        { "type": "product_box", "settings": { "style": "tagwerk", "title": "TAGWERK", "subtitle": "Yuzu-Zitrone" } },
-        { "type": "product_box", "settings": { "style": "standfest", "title": "STANDFEST", "subtitle": "Daily Support" } },
-        { "type": "product_box", "settings": { "style": "kraftreserve", "title": "KRAFTRESERVE", "subtitle": "Kreatin Monohydrat" } }
-      ]
-    }
-  ]
+  "presets": [{
+    "name": "Dein Werkzeugkasten",
+    "blocks": [
+      { "type": "product_box", "settings": { "style": "tagwerk", "title": "TAGWERK", "subtitle": "Yuzu-Zitrone" } },
+      { "type": "product_box", "settings": { "style": "standfest", "title": "STANDFEST", "subtitle": "Daily Support" } },
+      { "type": "product_box", "settings": { "style": "kraftreserve", "title": "KRAFTRESERVE", "subtitle": "Kreatin Monohydrat" } }
+    ]
+  }]
 }
 {% endschema %}
