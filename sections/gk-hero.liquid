@@ -1,4 +1,4 @@
-<section class="gk-hero gk-grain">
+<section class="gk-hero gk-grain{% unless section.settings.use_custom_image %} gk-hero--master{% endunless %}">
   <div class="gk-hero__backdrop" aria-hidden="true"></div>
 
   <div class="gk-container gk-hero__grid">
@@ -36,10 +36,10 @@
     <div class="gk-hero__visual">
       <div class="gk-hero__frame">
         <div class="gk-hero__media">
-          {% if section.settings.image != blank %}
+          {% if section.settings.use_custom_image and section.settings.image != blank %}
             {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600,900,1200,1600', sizes: '(min-width: 901px) 48vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image_alt }}
           {% else %}
-            <img src="{{ 'gk-hero-people-metal.jpg' | asset_url }}" width="272" height="337" loading="eager" fetchpriority="high" alt="Menschen aus unterschiedlichen Lebensbereichen vor metallischem GRUNDKRAFT G">
+            <img src="{{ 'gk-hero-people-metal.jpg' | asset_url }}" width="680" height="760" loading="eager" fetchpriority="high" alt="Menschen aus unterschiedlichen Lebensbereichen vor metallischem GRUNDKRAFT G">
           {% endif %}
         </div>
         <div class="gk-hero__frame-lines" aria-hidden="true"></div>
@@ -58,7 +58,8 @@
   "tag": "section",
   "class": "section-gk-hero",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Hero-Bild rechts (optional, Standard = Mockup-Asset)" },
+    { "type": "checkbox", "id": "use_custom_image", "label": "Eigenes Hero-Bild statt Master-Mockup verwenden", "default": false },
+    { "type": "image_picker", "id": "image", "label": "Eigenes Hero-Bild rechts" },
     { "type": "text", "id": "image_alt", "label": "Bildbeschreibung", "default": "Menschen mitten im echten Alltag" },
     { "type": "checkbox", "id": "show_product", "label": "TAGWERK Behälter zeigen", "default": true },
     { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Für echte Arbeitstage" },
