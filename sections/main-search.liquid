@@ -1,0 +1,53 @@
+<section class="gk-commerce-hero">
+  <div class="gk-container gk-commerce-hero__inner">
+    <p class="gk-eyebrow">Suche</p>
+    <h1>Finde dein Werkzeug.</h1>
+    <form class="gk-search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Produkt oder Thema suchen" aria-label="Suche">
+      <button type="submit">Suchen</button>
+    </form>
+  </div>
+</section>
+
+<section class="gk-collection">
+  <div class="gk-container">
+    {% if search.performed %}
+      {% paginate search.results by 24 %}
+        {% if search.results_count > 0 %}
+          <div class="gk-collection__bar"><div class="gk-collection__count">{{ search.results_count }} Treffer für „{{ search.terms }}“</div></div>
+          <div class="gk-product-grid">
+            {% for item in search.results %}
+              {% if item.object_type == 'product' %}
+                {% render 'gk-product-card', product: item %}
+              {% else %}
+                <article class="gk-product-card">
+                  <a href="{{ item.url }}">
+                    <div class="gk-product-card__body">
+                      <p class="gk-eyebrow">{{ item.object_type }}</p>
+                      <h3 class="gk-product-card__title">{{ item.title }}</h3>
+                      {% if item.content != blank %}<div class="gk-product-card__meta">{{ item.content | strip_html | truncate: 140 }}</div>{% endif %}
+                    </div>
+                  </a>
+                </article>
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% if paginate.pages > 1 %}
+            <nav style="display:flex;justify-content:center;gap:10px;margin-top:30px">
+              {% if paginate.previous %}<a class="gk-btn gk-btn--secondary" href="{{ paginate.previous.url }}">Zurück</a>{% endif %}
+              {% if paginate.next %}<a class="gk-btn gk-btn--secondary" href="{{ paginate.next.url }}">Weiter</a>{% endif %}
+            </nav>
+          {% endif %}
+        {% else %}
+          <div class="gk-empty-state"><h2>Kein Treffer.</h2><p class="gk-copy">Versuch einen anderen Begriff oder geh direkt zum Sortiment.</p><a class="gk-btn gk-btn--primary" href="{{ routes.all_products_collection_url }}">Zum Sortiment</a></div>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <div class="gk-empty-state"><h2>Suchbegriff eingeben.</h2><p class="gk-copy">Produkte, Seiten und Inhalte werden hier durchsucht.</p></div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{"name":"GRUNDKRAFT Suche","tag":"section","class":"section-main-search","settings":[]}
+{% endschema %}
