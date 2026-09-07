@@ -26,6 +26,22 @@
       },
       "block_order": ["pillar_1", "pillar_2", "pillar_3"]
     },
+    "tagwerk_feature": {
+      "type": "gk-product-feature",
+      "settings": {
+        "eyebrow": "Produkt-Hero",
+        "heading": "TAGWERK",
+        "subtitle": "Yuzu-Zitrone",
+        "text": "<p>Als tägliche Routine für lange Arbeitstage gedacht. Die finale Rezeptur und Kennzeichnung werden vor dem Verkauf verbindlich festgelegt.</p>",
+        "button_label": "Mehr erfahren"
+      },
+      "blocks": {
+        "feature_1": { "type": "badge", "settings": { "label": "1-Liter-Routine" } },
+        "feature_2": { "type": "badge", "settings": { "label": "Für lange Arbeitstage" } },
+        "feature_3": { "type": "badge", "settings": { "label": "In Entwicklung" } }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3"]
+    },
     "toolbox": {
       "type": "gk-toolbox",
       "settings": {
@@ -65,5 +81,5 @@
       "block_order": ["tagwerk", "standfest", "kraftreserve"]
     }
   },
-  "order": ["hero", "pillars", "toolbox"]
+  "order": ["hero", "pillars", "tagwerk_feature", "toolbox"]
 }
