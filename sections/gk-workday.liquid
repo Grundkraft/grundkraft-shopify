@@ -1,0 +1,48 @@
+<section class="gk-workday">
+  <div class="gk-container">
+    <div class="gk-workday__head">
+      <div>
+        <p class="gk-eyebrow">Der Unterschied</p>
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      <div class="gk-copy">{{ section.settings.text }}</div>
+    </div>
+
+    <div class="gk-workday__rail">
+      {% for block in section.blocks %}
+        <article class="gk-workday__step" {{ block.shopify_attributes }}>
+          <div class="gk-workday__time">{{ block.settings.time }}</div>
+          <h3>{{ block.settings.heading }}</h3>
+          <p>{{ block.settings.text }}</p>
+          <div class="gk-workday__line" aria-hidden="true"></div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"Arbeitstag-System",
+  "tag":"section",
+  "class":"section-gk-workday",
+  "settings":[
+    {"type":"text","id":"heading","label":"Überschrift","default":"Acht Stunden Arbeit sind kein einstündiges Workout."},
+    {"type":"richtext","id":"text","label":"Text","default":"<p>GRUNDKRAFT denkt Versorgung nicht rund um eine Trainingssession, sondern entlang eines echten Tages: früh los, lange Belastung, wenig perfekte Pausen und danach ist das Leben noch nicht vorbei.</p>"}
+  ],
+  "blocks":[
+    {"type":"step","name":"Tagesphase","settings":[
+      {"type":"text","id":"time","label":"Zeit / Phase","default":"06:00"},
+      {"type":"text","id":"heading","label":"Titel","default":"Startklar"},
+      {"type":"textarea","id":"text","label":"Text","default":"Vorbereiten, auffüllen, los. Je einfacher die Routine, desto eher findet sie im Alltag statt."}
+    ]}
+  ],
+  "max_blocks":4,
+  "presets":[{"name":"Arbeitstag-System","blocks":[
+    {"type":"step","settings":{"time":"06:00","heading":"Startklar","text":"Vorbereiten, auffüllen, los. Je einfacher die Routine, desto eher findet sie im Alltag statt."}},
+    {"type":"step","settings":{"time":"10:30","heading":"Schon mittendrin","text":"Arbeit, Wetter, Fahrten oder Bewegung laufen längst. Trinken und Versorgung dürfen nicht kompliziert werden."}},
+    {"type":"step","settings":{"time":"14:30","heading":"Der lange Nachmittag","text":"Der Tag ist noch nicht vorbei. Genau hier zeigt sich, ob eine Routine alltagstauglich gedacht ist."}},
+    {"type":"step","settings":{"time":"18:00+","heading":"Leben danach","text":"Feierabend heißt nicht automatisch Stillstand. Familie, Haushalt, Training oder einfach Regeneration kommen danach."}}
+  ]}]
+}
+{% endschema %}
