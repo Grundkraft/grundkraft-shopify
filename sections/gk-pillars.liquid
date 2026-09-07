@@ -1,0 +1,53 @@
+<section class="gk-section">
+  <div class="gk-container">
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:30px">
+      <div>
+        <p class="gk-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="gk-heading gk-heading--lg">{{ section.settings.heading }}</h2>
+      </div>
+      <div class="gk-copy">{{ section.settings.text }}</div>
+    </div>
+
+    <div class="gk-pillars">
+      {% for block in section.blocks %}
+        <article class="gk-panel gk-pillar gk-halftone" {{ block.shopify_attributes }}>
+          <div class="gk-pillar__number">0{{ forloop.index }}</div>
+          <h3>{{ block.settings.heading }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "3 Säulen des Alltags",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Das System" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Die 3 Säulen des Alltags" },
+    { "type": "richtext", "id": "text", "label": "Intro", "default": "<p>GRUNDKRAFT denkt Versorgung entlang eines echten Arbeitstages: Leistung, Stabilität und Reserve.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Säule",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "TAGWERK" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Versorgung während langer und körperlich fordernder Tage." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "3 Säulen des Alltags",
+      "blocks": [
+        { "type": "pillar", "settings": { "heading": "TAGWERK", "text": "Versorgung während langer und körperlich fordernder Tage." } },
+        { "type": "pillar", "settings": { "heading": "STANDFEST", "text": "Für die langfristige Routine rund um Belastung und Alltag." } },
+        { "type": "pillar", "settings": { "heading": "KRAFTRESERVE", "text": "Gezielte Ergänzung für Kraft, Training und tägliche Reserve." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
