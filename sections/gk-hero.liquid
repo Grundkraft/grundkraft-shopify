@@ -22,7 +22,7 @@
           <a class="gk-btn gk-btn--primary" href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}">{{ section.settings.primary_label }}</a>
         {% endif %}
         {% if section.settings.secondary_label != blank %}
-          <a class="gk-btn gk-btn--secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+          <a class="gk-btn gk-btn--secondary" href="{{ section.settings.secondary_link | default: routes.all_products_collection_url }}">{{ section.settings.secondary_label }}</a>
         {% endif %}
       </div>
 
@@ -35,27 +35,19 @@
 
     <div class="gk-hero__visual">
       <div class="gk-hero__frame">
-        {% if section.settings.image != blank %}
-          <div class="gk-hero__media">
+        <div class="gk-hero__media">
+          {% if section.settings.image != blank %}
             {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600,900,1200,1600', sizes: '(min-width: 901px) 48vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image_alt }}
-          </div>
-        {% else %}
-          <div class="gk-hero__placeholder" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </div>
-        {% endif %}
-
+          {% else %}
+            <img src="{{ 'gk-hero-people-metal.jpg' | asset_url }}" width="272" height="337" loading="eager" fetchpriority="high" alt="Menschen aus unterschiedlichen Lebensbereichen vor metallischem GRUNDKRAFT G">
+          {% endif %}
+        </div>
         <div class="gk-hero__frame-lines" aria-hidden="true"></div>
       </div>
 
       {% if section.settings.show_product %}
         <img class="gk-hero__product" src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="300" height="420" loading="eager" alt="TAGWERK Produktbehälter">
       {% endif %}
-
-      <div class="gk-hero__stamp" aria-hidden="true">
-        <strong>GK</strong>
-        <span>GRUNDKRAFT</span>
-      </div>
     </div>
   </div>
 </section>
@@ -66,7 +58,7 @@
   "tag": "section",
   "class": "section-gk-hero",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Hero-Bild rechts" },
+    { "type": "image_picker", "id": "image", "label": "Hero-Bild rechts (optional, Standard = Mockup-Asset)" },
     { "type": "text", "id": "image_alt", "label": "Bildbeschreibung", "default": "Menschen mitten im echten Alltag" },
     { "type": "checkbox", "id": "show_product", "label": "TAGWERK Behälter zeigen", "default": true },
     { "type": "text", "id": "eyebrow", "label": "Kleine Überschrift", "default": "Für echte Arbeitstage" },
