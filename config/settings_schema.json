@@ -1,0 +1,89 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "GRUNDKRAFT",
+    "theme_version": "0.1.0",
+    "theme_author": "GRUNDKRAFT",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://shopify.dev/docs/storefronts/themes"
+  },
+  {
+    "name": "Brand & Layout",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 90,
+        "max": 320,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 180
+      },
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1800,
+        "step": 50,
+        "unit": "px",
+        "label": "Page width",
+        "default": 1500
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "min": 0,
+        "max": 16,
+        "step": 1,
+        "unit": "px",
+        "label": "Border radius",
+        "default": 2
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_background", "label": "Background", "default": "#111214" },
+      { "type": "color", "id": "color_surface", "label": "Surface", "default": "#1B1D20" },
+      { "type": "color", "id": "color_text", "label": "Text", "default": "#E9E4D9" },
+      { "type": "color", "id": "color_muted", "label": "Muted text", "default": "#9C9B96" },
+      { "type": "color", "id": "color_accent", "label": "Accent", "default": "#F26A21" },
+      { "type": "color", "id": "color_border", "label": "Border", "default": "#34373B" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Heading font",
+        "default": "assistant_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "assistant_n4"
+      }
+    ]
+  },
+  {
+    "name": "Product colors",
+    "settings": [
+      { "type": "color", "id": "color_tagwerk", "label": "TAGWERK", "default": "#F26A21" },
+      { "type": "color", "id": "color_standfest", "label": "STANDFEST", "default": "#2E93A8" },
+      { "type": "color", "id": "color_kraftreserve", "label": "KRAFTRESERVE", "default": "#B7D93D" },
+      { "type": "color", "id": "color_omega", "label": "OMEGA-3", "default": "#1BA7A8" },
+      { "type": "color", "id": "color_basis", "label": "BASIS", "default": "#4E9A51" },
+      { "type": "color", "id": "color_feierabend", "label": "FEIERABEND", "default": "#495D9B" }
+    ]
+  }
+]
