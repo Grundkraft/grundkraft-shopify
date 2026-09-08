@@ -39,12 +39,12 @@
           {% if section.settings.use_custom_image and section.settings.image != blank %}
             {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600,900,1200,1600', sizes: '(min-width: 901px) 48vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image_alt }}
           {% else %}
-            <img src="{{ 'gk-hero-people-metal-embedded.svg' | asset_url }}" width="610" height="674" loading="eager" fetchpriority="high" alt="Menschen aus unterschiedlichen Lebensbereichen vor metallischem GRUNDKRAFT G">
+            <img src="{{ 'gk-hero-people-v2.webp' | asset_url }}" width="1254" height="1254" loading="eager" fetchpriority="high" alt="Handwerkerin, Mutter mit Kind und Gärtner vor metallischem GRUNDKRAFT G">
           {% endif %}
         </div>
         <div class="gk-hero__frame-lines" aria-hidden="true"></div>
       </div>
-      {% if section.settings.show_product %}<a href="{{ primary_url }}" aria-label="TAGWERK ansehen"><img class="gk-hero__product" src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="300" height="420" loading="eager" alt="TAGWERK Produktbehälter"></a>{% endif %}
+      {% if section.settings.show_product %}<a href="{{ primary_url }}" aria-label="TAGWERK ansehen"><img class="gk-hero__product" src="{{ 'product-tub-tagwerk.svg' | asset_url }}" width="340" height="460" loading="eager" alt="TAGWERK Produktbehälter"></a>{% endif %}
     </div>
   </div>
 </section>

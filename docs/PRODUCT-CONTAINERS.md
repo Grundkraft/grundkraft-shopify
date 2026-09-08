@@ -14,7 +14,7 @@ All core powder products use the same recognizable family:
 - rounded shoulder
 - straight lower body
 - dark label field
-- narrow high-contrast product-color band near the upper label
+- curved diagonal product-color field near the upper label and an opposing lower sweep
 - centered GRUNDKRAFT `G` mark
 - large condensed product name
 - compact secondary descriptor beneath
@@ -34,12 +34,12 @@ The container should feel durable, workshop-grade and premium, not clinical.
 
 Top to bottom:
 
-1. product-color band
+1. curved product-color field
 2. centered GRUNDKRAFT `G`
 3. large product name
-4. small descriptor / flavor
-5. restrained technical/legal microcopy
-6. optional weight/quantity bottom corner
+4. compact brand signature
+5. verified descriptor and mandatory details only in final production artwork
+6. no assumed weight or quantity on storefront concept assets
 
 The product name must dominate at thumbnail size.
 

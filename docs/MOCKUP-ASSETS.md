@@ -2,12 +2,18 @@
 
 The original GRUNDKRAFT mockup is the visual master reference for the storefront.
 
-## Extracted / recreated assets now stored in the theme
+## Current production hero
+
+- `assets/gk-hero-people-v2.webp`: 1254 × 1254, approximately 246 KB, newly generated from the supplied composition reference. Used by the default hero. The old raster exports below failed decoding during refinement and are retained only as legacy source history.
+- `assets/gk-concrete.svg`: seamless procedural mineral texture for the outer page frame.
+- See `VISUAL-REFINEMENT.md` for provenance, prompt and validation limits.
+
+## Earlier extracted / recreated assets stored in the theme
 
 - `assets/gk-hero-people-metal.jpg`
   - Extracted from the supplied master mockup.
   - Contains the people group and the metallic G composition used on the right side of the hero.
-  - Used as the default hero visual when no merchant image is selected.
+  - Superseded by the v2 WebP for the default hero.
 
 - `assets/gk-metal-g.svg`
   - Recreated metallic G backdrop motif for scalable use.

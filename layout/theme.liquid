@@ -22,12 +22,12 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'brand-components.css' | asset_url | stylesheet_tag }}
     {{ 'toolbox.css' | asset_url | stylesheet_tag }}
-    {{ 'mockup.css' | asset_url | stylesheet_tag }}
     {{ 'homepage-sections.css' | asset_url | stylesheet_tag }}
     {{ 'story-business.css' | asset_url | stylesheet_tag }}
     {{ 'community-footer.css' | asset_url | stylesheet_tag }}
     {{ 'commerce.css' | asset_url | stylesheet_tag }}
     {{ 'launch.css' | asset_url | stylesheet_tag }}
+    {{ 'mockup.css' | asset_url | stylesheet_tag }}
 
     <style>
       {% if settings.type_header_font != blank %}{{ settings.type_header_font | font_face: font_display: 'swap' }}{% endif %}
@@ -41,7 +41,8 @@
         --gk-border: {{ settings.color_border }};
         --gk-max-width: {{ settings.page_width }}px;
         --gk-radius: {{ settings.border_radius }}px;
-        --gk-font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+        --gk-font-heading: {{ settings.type_header_font.family | default: 'Arial Narrow' }}, {{ settings.type_header_font.fallback_families | default: 'sans-serif' }};
+        --gk-heading-weight: {{ settings.type_header_font.weight | default: 700 }};
         --gk-font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
       }
     </style>

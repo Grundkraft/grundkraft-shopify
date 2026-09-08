@@ -5,7 +5,7 @@
     "announcement": {
       "type": "announcement-bar",
       "settings": {
-        "show_bar": true,
+        "show_bar": false,
         "text": "GRUNDKRAFT · Gemacht für Macher."
       }
     },
