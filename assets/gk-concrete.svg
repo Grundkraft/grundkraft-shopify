@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <filter id="mineral"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  <path fill="#85867f" d="M0 0h320v320H0z"/>
+  <path fill="#777" opacity=".42" filter="url(#mineral)" d="M0 0h320v320H0z"/>
+</svg>

@@ -42,13 +42,24 @@ class GrundkraftToolbox {
     if (!this.track) return;
     this.prev?.addEventListener('click', () => this.scroll(-1));
     this.next?.addEventListener('click', () => this.scroll(1));
+    this.track.addEventListener('scroll', () => this.updateControls(), { passive: true });
+    this.resizeObserver = new ResizeObserver(() => this.updateControls());
+    this.resizeObserver.observe(this.track);
+    this.updateControls();
+  }
+
+  updateControls() {
+    const end = this.track.scrollWidth - this.track.clientWidth;
+    if (this.prev) this.prev.disabled = this.track.scrollLeft <= 1;
+    if (this.next) this.next.disabled = this.track.scrollLeft >= end - 1;
   }
 
   scroll(direction) {
     const firstCard = this.track.querySelector('.gk-product-box');
-    const gap = 16;
+    const gap = parseFloat(getComputedStyle(this.track).columnGap) || 0;
     const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : this.track.clientWidth * 0.8;
-    this.track.scrollBy({ left: distance * direction, behavior: 'smooth' });
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+    this.track.scrollBy({ left: distance * direction, behavior });
   }
 }
 

@@ -59,7 +59,7 @@
   {
     "name": "Typography",
     "settings": [
-      { "type": "font_picker", "id": "type_header_font", "label": "Heading font", "default": "assistant_n7" },
+      { "type": "font_picker", "id": "type_header_font", "label": "Heading font", "default": "oswald_n7" },
       { "type": "font_picker", "id": "type_body_font", "label": "Body font", "default": "assistant_n4" }
     ]
   },

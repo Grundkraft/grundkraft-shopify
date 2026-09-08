@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="gk-toolbox__track" data-toolbox-track>
+    <div class="gk-toolbox__track" data-toolbox-track tabindex="0" role="region" aria-label="{{ heading | default: 'Dein Werkzeugkasten' | escape }}">
       {% for block in section.blocks %}
         {% liquid
           assign style = block.settings.style

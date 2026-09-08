@@ -43,7 +43,7 @@
     "tagwerk_feature": {
       "type": "gk-product-feature",
       "settings": {
-        "eyebrow": "Produkt-Hero",
+        "eyebrow": "Für deinen Arbeitstag",
         "heading": "TAGWERK",
         "subtitle": "Yuzu-Zitrone",
         "text": "<p>Als tägliche Routine für lange Arbeitstage gedacht. Die finale Rezeptur und Kennzeichnung werden vor dem Verkauf verbindlich festgelegt.</p>",
@@ -157,5 +157,5 @@
       }
     }
   },
-  "order": ["hero", "pillars", "workday", "tagwerk_feature", "toolbox", "story", "business", "community", "ingredients", "faq", "newsletter"]
+  "order": ["hero", "pillars", "tagwerk_feature", "toolbox", "workday", "story", "business", "community", "ingredients", "faq", "newsletter"]
 }
