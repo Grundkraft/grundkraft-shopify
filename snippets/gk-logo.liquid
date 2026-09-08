@@ -1,0 +1,7 @@
+{% comment %}Shared header/footer lockup; merchant logo override stays consistent.{% endcomment %}
+{% assign logo_loading = loading | default: 'lazy' %}
+{% if settings.logo != blank %}
+  {{ settings.logo | image_url: width: settings.logo_width | image_tag: widths: '120,180,240,320', width: settings.logo_width, loading: logo_loading, alt: shop.name }}
+{% else %}
+  <img class="gk-logo__fallback" src="{{ 'gk-logo.svg' | asset_url }}" width="300" height="58" loading="{{ logo_loading }}" alt="GRUNDKRAFT">
+{% endif %}
