@@ -16,6 +16,14 @@ Basis: `development` at `9d87b0154373e2abac56fbb02f8fbc348b9b1711`, checked out 
 
 ## Validation and limits
 
+Local design renders (not a live Shopify session):
+
+![Desktop hero](previews/desktop.png)
+
+![Product family](previews/product-family.png)
+
+![Mobile hero](previews/mobile.png)
+
 - Shopify CLI Theme Check: empty JSON result (`[]`), exit 0.
 - Local Chromium/Chrome renders of the actual Liquid sections using LiquidJS, schema defaults and the repository's homepage settings.
 - Homepage widths: 1440, 1024, 768, 390 and 320 px. No horizontal page overflow, failed decoded images or JavaScript exceptions. Mobile menu opening/Escape and toolbox scrolling passed.
